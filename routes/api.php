@@ -32,7 +32,7 @@ Route::get('discriminador/{id}','Fluxograma_DiscriminadorController@show'); // D
 Route::post('fluxograma/store','FluxogramaController@store');
 Route::post('discriminador/store','DiscriminadorController@store');
 Route::post('fluxograma/discriminador/store','Fluxograma_DiscriminadorController@store');
-Route::get('atendimentos','AtendimentoController@show');
+Route::post('atendimentos','AtendimentoController@show');
 Route::post('atendimento/store','AtendimentoController@store');
 
 

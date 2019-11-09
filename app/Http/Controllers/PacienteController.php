@@ -59,9 +59,17 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show(Request $request)
     {
-        return Paciente::where('nome','LIKE',$request->nome.'%')->where('mae','LIKE',$request->mae.'%')->paginate(4);
+        return Paciente::where('nome','LIKE',$request->nome.'%')
+                       ->where('mae','LIKE',$request->mae.'%')
+                       ->where(function ($query) use ($request){
+                            if(isset($request->nascimento)){
+                                $query->whereDate('nascimento',$request->nascimento);
+                            }
+                       })
+                       ->paginate(4);
     }
 
     /**

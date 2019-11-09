@@ -14,7 +14,7 @@ class Fluxograma_DiscriminadorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        return Fluxograma_Discriminador::join('Discriminador','Fluxograma_Discriminador.discriminador','=','Discriminador.id')->where('Fluxograma_Discriminador.fluxograma','=',$id)->get();
+        return Fluxograma_Discriminador::join('Discriminador','Fluxograma_Discriminador.discriminador','=','Discriminador.id')->where('Fluxograma_Discriminador.fluxograma','=',$id)->select("Fluxograma_Discriminador.*","Discriminador.nome")->get();
     }
 
     public function store(Request $request){

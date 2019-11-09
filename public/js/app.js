@@ -70747,12 +70747,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Atendimento; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _caPaciente__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./caPaciente */ "./resources/js/components/caPaciente.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-js-pagination */ "./node_modules/react-js-pagination/dist/Pagination.js");
-/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_js_pagination__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-js-pagination */ "./node_modules/react-js-pagination/dist/Pagination.js");
+/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_js_pagination__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _imagens_brasao_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../imagens/brasao.png */ "./resources/js/imagens/brasao.png");
+/* harmony import */ var _imagens_brasao_png__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_imagens_brasao_png__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _imagens_upa_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../imagens/upa.png */ "./resources/js/imagens/upa.png");
+/* harmony import */ var _imagens_upa_png__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_imagens_upa_png__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _imagens_logomini_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../imagens/logomini.png */ "./resources/js/imagens/logomini.png");
+/* harmony import */ var _imagens_logomini_png__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_imagens_logomini_png__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _validacao_validacao__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./validacao/validacao */ "./resources/js/components/validacao/validacao.js");
+/* harmony import */ var _imagens_edit_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../imagens/edit.png */ "./resources/js/imagens/edit.png");
+/* harmony import */ var _imagens_edit_png__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_imagens_edit_png__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _imagens_accept_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../imagens/accept.png */ "./resources/js/imagens/accept.png");
+/* harmony import */ var _imagens_accept_png__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_imagens_accept_png__WEBPACK_IMPORTED_MODULE_8__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -70762,13 +70774,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
 
 
 
@@ -70780,27 +70797,35 @@ var Atendimento =
 function (_Component) {
   _inherits(Atendimento, _Component);
 
-  function Atendimento() {
+  function Atendimento(props) {
     var _this;
 
     _classCallCheck(this, Atendimento);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Atendimento).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Atendimento).call(this, props));
     _this.state = {
       pacientes: [],
-      paciente: [],
       fluxograma: [],
       discriminador: [],
       user: [],
-      classificacao: "",
-      activePage: 1,
-      itemsCountPerPage: 1,
-      totalItemsCount: 1
+      classificacao: "Cor",
+      activePage: 0,
+      itemsCountPerPage: 0,
+      totalItemsCount: 0,
+      atendimento: _this.props.location.state ? _this.props.location.state.atendimento : [],
+      cor: '',
+      municipios: [],
+      bairros: [],
+      etnias: [],
+      tiposlogradouro: [],
+      paciente: {
+        municipio: "Teófilo Otoni-MG",
+        naturalidade: "Teófilo Otoni-MG",
+        tipoLogradouro: 'Rua'
+      }
     };
-    _this.nome = "";
-    _this.mae = "";
-    _this.nascimento = "";
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://systh/user").then(function (response) {
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://systh/user").then(function (response) {
       _this.setState({
         user: response.data
       });
@@ -70812,6 +70837,50 @@ function (_Component) {
   }
 
   _createClass(Atendimento, [{
+    key: "handleChange",
+    value: function handleChange(e) {
+      var atendimento = this.state.atendimento;
+      var newValue = e.target.value;
+      var campo = e.target.id;
+      var oldValue = atendimento[campo];
+      newValue = newValue.toUpperCase();
+      var tipo;
+
+      if (campo == "registro" || campo == 'numero') {
+        tipo = 'int';
+      } else if (campo == 'saturacao' || campo == 'glasgow' || campo == 'tax' || campo == 'hgt' || campo == 'fc' || campo == 'pa' || campo == 'peso' || campo == 'temperatura') {
+        tipo = 'float';
+      } else if (campo == 'nascimento') {
+        tipo = 'date';
+      } else {
+        tipo = 'text';
+      }
+
+      if (campo == 'nome' || campo == 'nascimento' || campo == 'mae' || campo == 'numero' || campo == 'profissao' || campo == 'complemento' || campo == 'logradouro') {
+        var paciente = this.state.paciente;
+        paciente[campo] = Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_6__["default"])(tipo, newValue, oldValue);
+        this.setState({
+          paciente: paciente
+        });
+      } else {
+        atendimento[campo] = Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_6__["default"])(tipo, newValue, oldValue);
+        this.setState({
+          atendimento: atendimento
+        });
+      }
+    }
+  }, {
+    key: "setAtendimento",
+    value: function setAtendimento(nome, mae, nascimento) {
+      var atendimento = this.state.atendimento;
+      atendimento.nome = nome;
+      atendimento.mae = mae;
+      atendimento.nascimento = nascimento;
+      this.setState({
+        atendimento: atendimento
+      });
+    }
+  }, {
     key: "handlePageChange",
     value: function handlePageChange(pageNumber) {
       var _this2 = this;
@@ -70821,7 +70890,7 @@ function (_Component) {
         mae: this.mae,
         nascimento: this.nascimento
       };
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("http://systh/api/paciente?page=" + pageNumber, pacientes).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://systh/api/paciente?page=" + pageNumber, pacientes).then(function (response) {
         _this2.setState({
           pacientes: response.data.data,
           activePage: response.data.current_page,
@@ -70836,15 +70905,16 @@ function (_Component) {
       var _this3 = this;
 
       // Busca no Banco os dados para preenchimento do ComboBox Fluxograma;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://systh/api/fluxograma").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://systh/api/fluxograma").then(function (response) {
         _this3.setState({
           fluxograma: response.data
         });
       });
-    }
+    } //obtem o código do fluxograma e preenche o combobox do discriminador
+
   }, {
-    key: "preencherDiscriminador",
-    value: function preencherDiscriminador(e) {
+    key: "fluxograma",
+    value: function fluxograma(e) {
       var _this4 = this;
 
       this.fluxograma = e.target.value;
@@ -70857,11 +70927,52 @@ function (_Component) {
       }
 
       if (typeof this.fluxograma === "number") {
-        axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://systh/api/discriminador/" + this.fluxograma).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://systh/api/discriminador/" + this.fluxograma).then(function (response) {
           _this4.setState({
             discriminador: response.data
           });
         });
+      }
+    } //obtem o código da classificação
+
+  }, {
+    key: "discriminador",
+    value: function discriminador(e) {
+      for (var i = 0; i < this.state.discriminador.length; i++) {
+        if (e.target.value == this.state.discriminador[i].nome) {
+          var atendimento = this.state.atendimento;
+          atendimento.classificacao = this.state.discriminador[i].id;
+          this.setState({
+            atendimento: atendimento
+          });
+          this.setState({
+            classificacao: this.state.discriminador[i].cor
+          });
+
+          if (this.state.discriminador[i].cor == "Vermelho") {
+            this.setState({
+              cor: '#ff0000'
+            });
+          } else if (this.state.classificacao == "Laranja") {
+            this.setState({
+              cor: '#ff8c00'
+            });
+          } else if (this.state.classificacao == "Amarelo") {
+            this.setState({
+              cor: '#ffff00'
+            });
+          } else if (this.state.classificacao == "Verde") {
+            this.setState({
+              cor: '#008000'
+            });
+          } else if (this.state.classificacao == "Azul") {
+            this.setState({
+              cor: '#0000ff'
+            });
+          }
+
+          break;
+        }
       }
     }
   }, {
@@ -70871,13 +70982,13 @@ function (_Component) {
 
       e.preventDefault();
 
-      if (!(this.nome === "" && this.mae === "" && this.nascimento === "")) {
+      if (!(!this.state.paciente.nome && !this.state.paciente.mae && !this.state.paciente.nascimento)) {
         var pacientes = {
-          nome: this.nome,
-          mae: this.mae,
-          nascimento: this.nascimento
+          nome: this.state.paciente.nome,
+          mae: this.state.paciente.mae,
+          nascimento: this.state.paciente.nascimento
         };
-        axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('http://systh/api/paciente', pacientes).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://systh/api/paciente', pacientes).then(function (response) {
           _this5.setState({
             pacientes: response.data.data,
             activePage: response.data.current_page,
@@ -70885,67 +70996,210 @@ function (_Component) {
             totalItemsCount: response.data.total
           });
         });
-        document.getElementById('nome2').value = this.nome;
-        document.getElementById('mae2').value = this.mae;
-        document.getElementById('nascimento2').value = this.nascimento;
       }
     }
   }, {
     key: "selecionar",
     value: function selecionar(row) {
-      document.getElementById('nome').value = row.nome;
-      document.getElementById('mae').value = row.mae;
-      document.getElementById('nascimento').value = row.nascimento;
-      this.idPaciente = row.id;
-    }
-  }, {
-    key: "classificar",
-    value: function classificar(e) {
-      e.preventDefault();
-
-      for (var i = 0; i < this.state.discriminador.length; i++) {
-        if (this.discriminador === this.state.discriminador[i].nome) {
-          this.classificacao = this.state.discriminador[i].id;
-          this.state.classificacao = this.paciente + " classificado como " + this.state.discriminador[i].cor;
-          break;
-        }
-      }
+      var atendimento = this.state.atendimento;
+      var paciente = this.state.paciente;
+      atendimento.paciente = row.id;
+      paciente.nome = row.nome;
+      paciente.mae = row.mae;
+      paciente.nascimento = row.nascimento;
+      this.setState({
+        paciente: paciente,
+        atendimento: atendimento
+      });
     }
   }, {
     key: "incluir",
     value: function incluir(e) {
       e.preventDefault();
+      var atendimento = {
+        paciente: this.state.atendimento.paciente,
+        enfermeiro: this.state.user.id,
+        registro: this.state.atendimento.registro,
+        saturacao: this.state.atendimento.saturacao,
+        glasgow: this.state.atendimento.glasgow,
+        tax: this.state.atendimento.tax,
+        hgt: this.state.atendimento.hgt,
+        pa: this.state.atendimento.pa,
+        fc: this.state.atendimento.fc,
+        temperatura: this.state.atendimento.temperatura,
+        peso: this.state.atendimento.peso,
+        discricao: this.state.atendimento.discricao,
+        fluxograma_discriminador: this.state.atendimento.classificacao
+      };
+      console.log(atendimento);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/atendimento/store', atendimento);
+    }
+  }, {
+    key: "imprimir",
+    value: function imprimir(e) {
+      e.preventDefault(); //var table = "";
 
-      for (var i = 0; i < this.state.discriminador.length; i++) {
-        if (this.discriminador === this.state.discriminador[i].nome) {
-          this.classificacao = this.state.discriminador[i].id;
-          this.state.classificacao = this.paciente + " classificado como " + this.state.discriminador[i].cor;
+      var table = "<table><tr class='center'><td><img src='http://systh/images/brasao.png'></td><td colspan='3'><b>PREFEITURA MUNICIPAL DE TEÓFILO OTONI <br> SECRETARIA MUNICIPAL DE SAÚDE <br> Unidade de Pronto Atendimento</b></td><td><img src='images/upa.png'></td></tr>";
+      table = table + "<tr class='center'><td colspan='5'><b>SECRETARIA DE ESTADO DE SAÚDE DE MINAS GERAIS</b></td></tr>";
+      table = table + "<tr class='center'><td colspan='5'><b>ACOLHIMENTO COM CLASSIFICAÇÃO DE RISCO - SISTEMA DE MANCHESTER</b></td></tr>";
+      table = table + "<tr><td colspan='5' bgcolor='C0C0C0'>&nbsp;</td></tr>";
+      table = table + "<tr class='center'><td colspan='5' >IDENTIFICAÇÃO DO PACIENTE</td></tr>";
+      table = table + "<tr><td colspan='5'>Nome: " + this.nome + " </td></tr>";
+      table = table + "<tr><td colspan='2'>Idade: " + this.nascimento + "</td><td colspan='3'>Registro: " + this.registro + "</td></tr>";
+      table = table + "<tr><td colspan='5'>Mãe: " + this.mae + " </td></tr>";
+      table = table + "<tr><td colspan='2'>Etnia: " + "</td><td colspan='3'>Naturalidade: " + " </td></tr>";
+      table = table + "<tr><td colspan='2'>ID: " + "</td><td colspan='3'>Profissão/Ocupação: " + " </td></tr>";
+      table = table + "<tr><td colspan='5'>Logradouro: " + "" + " </td></tr>";
+      table = table + "<tr><td colspan='2'>Número: " + "</td><td colspan='3'>Complemento: " + " </td></tr>";
+      table = table + "<tr><td colspan='2'>Bairro: " + "</td><td colspan='3'>Cidade: " + " </td></tr>";
+      table = table + "<tr><td colspan='5' bgcolor='C0C0C0'>&nbsp;</td></tr>";
+      table = table + "<tr class='center'><td colspan='5' >CLASSIFICAÇÃO DE RISCO</td></tr>";
+      table = table + "<tr><td colspan='5'>Descrição: " + "" + " </td></tr>";
+      table = table + "<tr><td colspan='4'>Fluxograma: " + "</td><td>Número: " + " </td></tr>";
+      table = table + "<tr><td colspan='5'>Discriminador: " + "" + " </td></tr>";
+      table = table + "<tr><td colspan='5' bgcolor='C0C0C0'>&nbsp;</td></tr>";
+      table = table + "<tr class='center'><td colspan='5' > SINAIS VITAIS </td></tr>";
+      table = table + "<tr><td colspan='2'>Saturação: " + "</td><td colspan='3'>Glasgow: " + " </td></tr>";
+      table = table + "<tr><td colspan='2'>TAX: " + "</td><td colspan='3'>HGT: " + " </td></tr>";
+      table = table + "<tr><td colspan='2'>PA: " + "</td><td colspan='3'>FC: " + " </td></tr>";
+      table = table + "<tr><td colspan='2'>Temperatura: " + "</td><td colspan='3'>Peso: " + " </td></tr>";
+      table = table + "<tr><td colspan='5' bgcolor='C0C0C0'>&nbsp;</td></tr>";
+      table = table + "<tr class='center'><td colspan='5' > ENFERMEIRO RESPONSÁVEL </td></tr>";
+      table = table + "<tr><td colspan='4'>Enfermeiro: " + "</td><td>Coren: " + " </td></tr>";
+      table = table + "<tr><td colspan='5'>Coordenador: " + "" + " </td></tr>";
+      table = table + "<tr><td colspan='5' class='center'><br><br>_____________________________________________<br> Teófilo Otoni<br> 21:41 <br> 25/10/2019</td></tr>";
+      table = table + "</table>";
+      var style = "<style> table{width: 100%; font: 17px Calibri;} table,tr,td {border: solid 2px #000000; border-collapse: collapse;} .center{text-align: center;}</style>";
+      var head = "<head><title>Atendimento </title> " + style + " </head>";
+      var body = "<body>" + table + "<body>";
+      var win = window.open("", "", "height=700,width=700");
+      win.document.write("<html>");
+      win.document.write(head);
+      win.document.write(body);
+      win.document.write("</html>");
+      win.print(); //win.close();
+    }
+  }, {
+    key: "coverteData",
+    value: function coverteData(data) {
+      var dia = data.substring(8, 10);
+      var mes = data.substring(5, 7);
+      var ano = data.substring(0, 4);
+      return dia + "/" + mes + "/" + ano;
+    } //set os campos da tela de atendimento de acordo com paciente salvo ou modificado
+
+  }, {
+    key: "setarCampos",
+    value: function setarCampos(paciente) {
+      var atendimento = this.state.atendimento;
+      atendimento.nome = paciente.nome;
+      atendimento.mae = paciente.mae;
+      atendimento.nascimento = paciente.nascimento;
+      this.setState({
+        atendimento: atendimento
+      });
+    } //cadastar novo paciente
+
+  }, {
+    key: "cadastrar",
+    value: function cadastrar(e) {
+      e.preventDefault();
+      this.listar();
+    } //////// ====== MÉTODOS UTILIZADOS PARA CADASTRO DE PACIENTE ==========////////
+
+  }, {
+    key: "listar",
+    value: function listar() {
+      var _this6 = this;
+
+      // Busca no Banco de dados os dados para ComboBox
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://systh/api/municipio").then(function (response) {
+        _this6.setState({
+          municipios: response.data
+        });
+      });
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://systh/api/bairro').then(function (response) {
+        _this6.setState({
+          bairros: response.data
+        });
+      });
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://systh/api/etnia').then(function (response) {
+        _this6.setState({
+          etnias: response.data
+        });
+      });
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://systh/api/tipologradouro').then(function (response) {
+        _this6.setState({
+          tiposlogradouro: response.data
+        });
+      });
+    }
+  }, {
+    key: "salvar",
+    value: function salvar(e) {
+      e.preventDefault(); //Para tranformar o nome em id para salvar no banco
+
+      for (var i = 0; i < this.state.bairros.length; i++) {
+        if (this.state.paciente.bairro == this.state.bairros[i].nome) {
+          this.state.paciente.bairro = this.state.bairros[i].id;
+          break;
+        }
+      } //Para tranformar o nome em id para salvar no banco
+
+
+      for (var i = 0; i < this.state.municipios.length; i++) {
+        if (this.state.paciente.municipio == this.state.municipios[i].nome + '-' + this.state.municipios[i].uf) {
+          this.state.paciente.municipio = this.state.municipios[i].id;
+        }
+
+        if (this.state.paciente.naturalidade == this.state.municipios[i].nome + '-' + this.state.municipios[i].uf) {
+          this.state.paciente.naturalidade = this.state.municipios[i].id;
+        }
+      } //Para tranformar o nome em id para salvar no banco
+
+
+      for (var i = 0; i < this.state.tiposlogradouro.length; i++) {
+        if (this.state.paciente.tipoLogradouro == this.state.tiposlogradouro[i].nome) {
+          this.state.paciente.tipoLogradouro = this.state.tiposlogradouro[i].id;
+          break;
+        }
+      } //Para tranformar o nome em id para salvar no banco
+
+
+      for (var i = 0; i < this.state.etnias.length; i++) {
+        if (this.state.paciente.etnia == this.state.etnias[i].nome) {
+          this.state.paciente.etnia = this.state.etnias[i].id;
           break;
         }
       }
 
-      var atendimento = {
-        paciente: this.idPaciente,
-        enfermeiro: this.state.user.id,
-        registro: this.registro,
-        saturacao: this.saturacao,
-        glasgow: this.glasgow,
-        tax: this.tax,
-        hgt: this.hgt,
-        pa: this.pa,
-        fc: this.fc,
-        temperatura: this.temperatura,
-        peso: this.peso,
-        discricao: this.discricao,
-        fluxograma_discriminador: this.classificacao
+      var paciente = {
+        nome: this.state.paciente.nome,
+        mae: this.state.paciente.mae,
+        nascimento: this.state.paciente.nascimento,
+        etnia: this.state.paciente.etnia,
+        naturalidade: this.state.paciente.naturalidade,
+        profissao: this.state.paciente.profissao,
+        tipoLogradouro: this.state.paciente.tipoLogradouro,
+        logradouro: this.state.paciente.logradouro,
+        numero: this.state.paciente.numero,
+        complemento: this.state.paciente.complemento,
+        municipio: this.state.paciente.municipio,
+        bairro: this.state.paciente.bairro
       };
-      console.log(atendimento);
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/atendimento/store', atendimento);
-    }
+      console.log(paciente);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/paciente/store', paciente) // .then(response => {this.props.paciente.id = response.data})
+      .then(function (response) {
+        return console.log(response);
+      });
+      document.getElementById('form').reset();
+    } //////// ====== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==========////////
+
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this7 = this,
+          _React$createElement;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container-fluid"
@@ -70958,17 +71212,13 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-primary",
         onClick: function onClick(e) {
-          return _this6.classificar(e);
-        },
-        "data-toggle": "modal",
-        "data-target": "#classificar"
-      }, "Classificar"), "\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary",
-        onClick: function onClick(e) {
-          return _this6.incluir(e);
+          return _this7.incluir(e);
         }
       }, "Incluir"), "\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary"
+        className: "btn btn-primary",
+        onClick: function onClick(e) {
+          return _this7.imprimir(e);
+        }
       }, "Imprimir"), "\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-primary"
       }, "Cancelar"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70977,7 +71227,9 @@ function (_Component) {
         className: "form-group row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-6 border-right border-dark"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Identifica\xE7\xE3o do Paciente")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        id: "identificacao"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Identifica\xE7\xE3o do Paciente")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "registro",
@@ -70985,10 +71237,9 @@ function (_Component) {
       }, " Registro: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.registro = e.target.value;
-        },
-        type: "number",
+        onChange: this.handleChange,
+        value: this.state.atendimento.registro,
+        type: "text",
         className: "form-control",
         id: "registro",
         placeholder: "Registro Sonner"
@@ -71000,9 +71251,8 @@ function (_Component) {
       }, " Nome: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-10"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.nome = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.nome,
         type: "text",
         className: "form-control text-uppercase",
         id: "nome",
@@ -71015,9 +71265,8 @@ function (_Component) {
       }, " M\xE3e: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-10"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.mae = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.mae,
         type: "text",
         className: "form-control text-uppercase",
         id: "mae",
@@ -71030,9 +71279,8 @@ function (_Component) {
       }, " Nascimento: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-5"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.nascimento = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.nascimento,
         type: "date",
         className: "form-control",
         id: "nascimento",
@@ -71041,12 +71289,12 @@ function (_Component) {
         className: "col-sm-5"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick(e) {
-          return _this6.buscar(e);
+          return _this7.buscar(e);
         },
         className: "btn btn-primary",
         "data-toggle": "modal",
         "data-target": "#exampleModalCenter"
-      }, "\xA0\xA0\xA0\xA0 Buscar Paciente \xA0\xA0\xA0\xA0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Descri\xE7\xE3o")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, " Buscar "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Descri\xE7\xE3o")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "descricao",
@@ -71054,9 +71302,9 @@ function (_Component) {
       }, " Descri\xE7\xE3o: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-10"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        onChange: function onChange(e) {
-          return _this6.descricao = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.atendimento.descricao,
+        defaultValue: "",
         className: "form-control",
         id: "descricao",
         placeholder: "Queixa/Situa\xE7\xE3o"
@@ -71070,10 +71318,9 @@ function (_Component) {
       }, " Satura\xE7\xE3o: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.saturacao = e.target.value;
-        },
-        type: "number",
+        onChange: this.handleChange,
+        value: this.state.atendimento.saturacao,
+        type: "text",
         className: "form-control",
         id: "saturacao",
         placeholder: "Oxig\xEAnio"
@@ -71083,10 +71330,9 @@ function (_Component) {
       }, " Glasgow: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.glasgow = e.target.value;
-        },
-        type: "number",
+        onChange: this.handleChange,
+        value: this.state.atendimento.glasgow,
+        type: "text",
         className: "form-control",
         id: "glasgow",
         placeholder: "Glasgow"
@@ -71098,10 +71344,9 @@ function (_Component) {
       }, " Tax: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.tax = e.target.value;
-        },
-        type: "number",
+        onChange: this.handleChange,
+        value: this.state.atendimento.tax,
+        type: "text",
         className: "form-control",
         id: "tax",
         placeholder: "Tax"
@@ -71111,10 +71356,9 @@ function (_Component) {
       }, " HGT: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.hgt = e.target.value;
-        },
-        type: "number",
+        onChange: this.handleChange,
+        value: this.state.atendimento.hgt,
+        type: "text",
         className: "form-control",
         id: "hgt",
         placeholder: "HGT"
@@ -71126,10 +71370,9 @@ function (_Component) {
       }, " PA: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.pa = e.target.value;
-        },
-        type: "number",
+        onChange: this.handleChange,
+        value: this.state.atendimento.pa,
+        type: "text",
         className: "form-control",
         id: "pa",
         placeholder: "Press\xE3o Arterial"
@@ -71139,10 +71382,9 @@ function (_Component) {
       }, " FC: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.fc = e.target.value;
-        },
-        type: "number",
+        onChange: this.handleChange,
+        value: this.state.atendimento.fc,
+        type: "text",
         className: "form-control",
         id: "fc",
         placeholder: "FC"
@@ -71154,10 +71396,9 @@ function (_Component) {
       }, " Temperatura: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.temperatura = e.target.value;
-        },
-        type: "number",
+        onChange: this.handleChange,
+        value: this.state.atendimento.temperatura,
+        type: "text",
         className: "form-control",
         id: "temperatura",
         placeholder: "Temperatura"
@@ -71167,10 +71408,9 @@ function (_Component) {
       }, " Peso: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.peso = e.target.value;
-        },
-        type: "number",
+        onChange: this.handleChange,
+        value: this.state.atendimento.peso,
+        type: "text",
         className: "form-control",
         id: "peso",
         placeholder: "Peso"
@@ -71186,7 +71426,7 @@ function (_Component) {
         id: "fluxograma",
         list: "cbFluxograma",
         onChange: function onChange(e) {
-          return _this6.preencherDiscriminador(e);
+          return _this7.fluxograma(e);
         },
         placeholder: "Fluxograma"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
@@ -71208,7 +71448,7 @@ function (_Component) {
         id: "discriminador",
         list: "cbDiscriminador",
         onChange: function onChange(e) {
-          return _this6.discriminador = e.target.value;
+          return _this7.discriminador(e);
         },
         placeholder: "Discriminador"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
@@ -71248,12 +71488,11 @@ function (_Component) {
       }, " Nome: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-7"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.nome = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.nome,
         type: "text",
         className: "form-control text-uppercase",
-        id: "nome2",
+        id: "nome",
         placeholder: "Nome do paciente"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "nascimento",
@@ -71261,12 +71500,11 @@ function (_Component) {
       }, " Nascimento: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.nascimento = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.nascimento,
         type: "date",
         className: "form-control text-uppercase",
-        id: "nascimento2",
+        id: "nascimento",
         placeholder: "Nascimento"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
@@ -71276,18 +71514,17 @@ function (_Component) {
       }, " M\xE3e: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-7"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this6.mae = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.mae,
         type: "text",
-        className: "form-control",
-        id: "mae2",
+        className: "form-control text-uppercase",
+        id: "mae",
         placeholder: "Nome da m\xE3e"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick(e) {
-          return _this6.buscar(e);
+          return _this7.buscar(e);
         },
         className: "btn btn-primary col-sm-12"
       }, " Buscar "))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -71315,26 +71552,30 @@ function (_Component) {
       }, " Nascimento "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.pacientes.map(function (row) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
           key: row.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.nome, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.mae, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.nascimento, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.nome, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.mae, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", _this7.coverteData(row.nascimento), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "btn btn-warning"
-        }, "Alterar"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: _imagens_edit_png__WEBPACK_IMPORTED_MODULE_7___default.a
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "btn btn-primary",
           "data-dismiss": "modal",
           onClick: function onClick(e) {
-            return _this6.selecionar(row);
+            return _this7.selecionar(row);
           }
-        }, "Selecionar")));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: _imagens_accept_png__WEBPACK_IMPORTED_MODULE_8___default.a
+        }))));
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-flex justify-content-center"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        className: "d-flex justify-content-center col-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_2___default.a, {
         activePage: this.state.activePage,
         itemsCountPerPage: this.state.itemsCountPerPage,
         totalItemsCount: this.state.totalItemsCount,
         pageRangeDisplayed: 5,
         onChange: function onChange(e) {
-          return _this6.handlePageChange(e);
+          return _this7.handlePageChange(e);
         },
         itemClass: "page-item",
         linkClass: "page-link"
@@ -71344,511 +71585,14 @@ function (_Component) {
         "data-dismiss": "modal"
       }, "Cancelar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
-        className: "btn btn-primary",
+        onClick: function onClick(e) {
+          return _this7.cadastrar(e);
+        },
         "data-dismiss": "modal",
+        className: "btn btn-primary",
         "data-toggle": "modal",
         "data-target": ".bd-example-modal-lg"
-      }, "Cadastrar"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_caPaciente__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        paciente: {
-          nome: document.getElementById('nome'),
-          mae: document.getElementById('mae'),
-          nascimento: document.getElementById('nascimento')
-        }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal fade",
-        id: "classificar",
-        "data-backdrop": "static",
-        tabIndex: "-1",
-        role: "dialog",
-        "aria-labelledby": "exampleModalCenterTitle",
-        "aria-hidden": "true"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl",
-        role: "document"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-content"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "modal-title",
-        id: "exampleModalCenterTitle"
-      }, " Classifica\xE7\xE3o ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        className: "close",
-        "data-dismiss": "modal",
-        "aria-label": "Close"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        "aria-hidden": "true"
-      }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-body"
-      }, this.state.classificacao), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-footer"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-secondary"
-      }, "Fechar"))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-        className: "border-4"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        align: "right"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary"
-      }, " Incluir "), "\xA0"));
-    }
-  }]);
-
-  return Atendimento;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/atendimentos.js":
-/*!*************************************************!*\
-  !*** ./resources/js/components/atendimentos.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Atendimentos; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-js-pagination */ "./node_modules/react-js-pagination/dist/Pagination.js");
-/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_js_pagination__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-
-
-var Atendimentos =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Atendimentos, _Component);
-
-  function Atendimentos() {
-    var _this;
-
-    _classCallCheck(this, Atendimentos);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Atendimentos).call(this));
-    _this.state = {
-      atendimentos: [],
-      activePage: 1,
-      itemsCountPerPage: 1,
-      totalItemsCount: 1
-    };
-    return _this;
-  }
-
-  _createClass(Atendimentos, [{
-    key: "buscar",
-    value: function buscar(e) {
-      var _this2 = this;
-
-      e.preventDefault();
-
-      if (true) {
-        var filtros = {
-          dataInicial: this.dataInicial,
-          dataFinal: this.dataFinal,
-          nome: this.nome,
-          mae: this.mae,
-          nascimento: this.nascimento,
-          enfermeiro: this.enfermeiro
-        };
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://systh/api/atendimentos', filtros).then(function (response) {
-          _this2.setState({
-            atendimentos: response.data.data,
-            activePage: response.data.current_page,
-            itemsCountPerPage: response.data.per_page,
-            totalItemsCount: response.data.total
-          });
-        });
-      }
-    }
-  }, {
-    key: "handlePageChange",
-    value: function handlePageChange(pageNumber) {
-      var _this3 = this;
-
-      var filtros = {
-        dataInicial: this.dataInicial,
-        dataFinal: this.dataFinal,
-        nome: this.nome,
-        mae: this.mae,
-        nascimento: this.nascimento,
-        enfermeiro: this.enfermeiro
-      };
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://systh/api/atendimentos?page=" + pageNumber).then(function (response) {
-        _this3.setState({
-          atendimentos: response.data.data,
-          activePage: response.data.current_page,
-          itemsCountPerPage: response.data.per_page,
-          totalItemsCount: response.data.total
-        });
-      });
-    }
-  }, {
-    key: "selecionar",
-    value: function selecionar(e, id) {
-      e.preventDefault();
-      var atendimentos = this.state.atendimentos;
-      var atendimento = {};
-
-      for (var i = 0; i < atendimentos.length; i++) {
-        if (id == atendimentos[i].id) {
-          atendimento = this.state.atendimentos[i];
-          break;
-        }
-      }
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Redirect"], {
-        to: {
-          pathname: "/atendimento",
-          state: atendimento
-        }
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this4 = this;
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container-fluid"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-6"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "nome",
-        className: "col-sm-2 col-form-label "
-      }, " Paciente: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-10"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this4.nome = e.target.value;
-        },
-        type: "text",
-        className: "form-control text-uppercase",
-        id: "nome",
-        placeholder: "Nome do paciente"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "mae",
-        className: "col-sm-2 col-form-label"
-      }, " M\xE3e: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-10"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this4.mae = e.target.value;
-        },
-        type: "text",
-        className: "form-control text-uppercase",
-        id: "mae",
-        placeholder: "Nome da m\xE3e"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "enfermeiro",
-        className: "col-sm-2 col-form-label"
-      }, " Enfermeiro: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-10"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this4.enfermeiro = e.target.value;
-        },
-        type: "text",
-        className: "form-control text-uppercase",
-        id: "enfermeiro",
-        placeholder: "Enfermeiro"
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-6"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "nascimento",
-        className: "col-sm-2 col-form-label"
-      }, " Nascimento: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-5"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this4.nascimento = e.target.value;
-        },
-        type: "date",
-        className: "form-control",
-        id: "nascimento",
-        placeholder: "Nascimento"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group row align-text-middle"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "mae",
-        className: "col-sm-2 col-form-label"
-      }, "Entre: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-4"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this4.dataInicial = e.target.value;
-        },
-        type: "date",
-        className: "form-control",
-        id: "mae"
-      })), "-", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-4"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this4.dataFinal = e.target.value;
-        },
-        type: "date",
-        className: "form-control",
-        id: "mae"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary col-4",
-        onClick: function onClick(e) {
-          return _this4.buscar(e);
-        }
-      }, "Buscar"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-        className: "table table-striped"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        scope: "row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, " Registro "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, " Paciente "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, " M\xE3e "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, " Nascimento "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, " Classifica\xE7\xE3o "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, " Data e Hora "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col"
-      }, " "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.atendimentos.map(function (row) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-          key: row.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.registro, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.paciente, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.mae, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.nascimento, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.cor), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.created_at), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-primary",
-          onClick: function onClick(e) {
-            return _this4.selecionar(e, row.id);
-          }
-        }, "Selecionar")));
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-3"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_2___default.a, {
-        activePage: this.state.activePage,
-        itemsCountPerPage: this.state.itemsCountPerPage,
-        totalItemsCount: this.state.totalItemsCount,
-        pageRangeDisplayed: 5,
-        onChange: function onChange(e) {
-          return _this4.handlePageChange(e);
-        },
-        itemClass: "page-item",
-        linkClass: "page-link"
-      }))))));
-    }
-  }]);
-
-  return Atendimentos;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/caPaciente.js":
-/*!***********************************************!*\
-  !*** ./resources/js/components/caPaciente.js ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CaPaciente; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-var CaPaciente =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CaPaciente, _Component);
-
-  function CaPaciente(props) {
-    var _this;
-
-    _classCallCheck(this, CaPaciente);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(CaPaciente).call(this, props));
-    _this.state = {
-      municipios: [],
-      bairros: [],
-      etnias: [],
-      tiposlogradouro: []
-    };
-
-    _this.listar();
-
-    _this.municipio = "Teófilo Otoni-MG";
-    _this.naturalidade = "Teófilo Otoni-MG";
-    _this.tipoLogradouro = "Rua";
-    return _this;
-  }
-
-  _createClass(CaPaciente, [{
-    key: "listar",
-    value: function listar() {
-      var _this2 = this;
-
-      // Busca no Banco de dados os dados para ComboBox
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://systh/api/municipio").then(function (response) {
-        _this2.setState({
-          municipios: response.data
-        });
-      });
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://systh/api/bairro').then(function (response) {
-        _this2.setState({
-          bairros: response.data
-        });
-      });
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://systh/api/etnia').then(function (response) {
-        _this2.setState({
-          etnias: response.data
-        });
-      });
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://systh/api/tipologradouro').then(function (response) {
-        _this2.setState({
-          tiposlogradouro: response.data
-        });
-      });
-    }
-  }, {
-    key: "salvar",
-    value: function salvar(e) {
-      e.preventDefault(); //Para tranformar o nome em id para salvar no banco
-
-      for (var i = 0; i < this.state.bairros.length; i++) {
-        if (this.bairro == this.state.bairros[i].nome) {
-          this.bairro = this.state.bairros[i].id;
-          break;
-        }
-      } //Para tranformar o nome em id para salvar no banco
-
-
-      for (var i = 0; i < this.state.municipios.length; i++) {
-        if (this.municipio == this.state.municipios[i].nome + '-' + this.state.municipios[i].uf) {
-          this.municipio = this.state.municipios[i].id;
-        }
-
-        if (this.naturalidade == this.state.municipios[i].nome + '-' + this.state.municipios[i].uf) {
-          this.naturalidade = this.state.municipios[i].id;
-        }
-      } //Para tranformar o nome em id para salvar no banco
-
-
-      for (var i = 0; i < this.state.tiposlogradouro.length; i++) {
-        if (this.tipoLogradouro == this.state.tiposlogradouro[i].nome) {
-          this.tipoLogradouro = this.state.tiposlogradouro[i].id;
-          break;
-        }
-      } //Para tranformar o nome em id para salvar no banco
-
-
-      for (var i = 0; i < this.state.etnias.length; i++) {
-        if (this.etnia == this.state.etnias[i].nome) {
-          this.etnia = this.state.etnias[i].id;
-          break;
-        }
-      }
-
-      var paciente = {
-        nome: this.nome,
-        mae: this.mae,
-        nascimento: this.nascimento,
-        etnia: this.etnia,
-        naturalidade: this.naturalidade,
-        profissao: this.profissao,
-        tipoLogradouro: this.tipoLogradouro,
-        logradouro: this.logradouro,
-        numero: this.numero,
-        complemento: this.complemento,
-        municipio: this.municipio,
-        bairro: this.bairro
-      }; //seta os campos da  tela de atendimento
-
-      this.props.paciente.nome.value = this.nome;
-      this.props.paciente.mae.value = this.mae;
-      this.props.paciente.nascimento.value = this.nascimento;
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/paciente/store', paciente) // .then(response => {this.props.paciente.id = response.data})
-      .then(function (response) {
-        return console.log(response);
-      });
-      document.getElementById('form').reset();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this3 = this;
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Cadastrar")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal fade bd-example-modal-lg",
         "data-backdrop": "static",
         id: "modal2",
@@ -71914,12 +71658,12 @@ function (_Component) {
       }, " Nome: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-10"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this3.nome = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.nome,
         type: "text",
         className: "form-control text-uppercase",
         id: "nome",
+        name: "nome",
         placeholder: "Nome do paciente"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
@@ -71929,9 +71673,8 @@ function (_Component) {
       }, " M\xE3e: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-10"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this3.mae = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.mae,
         type: "text",
         className: "form-control text-uppercase",
         id: "mae",
@@ -71944,9 +71687,8 @@ function (_Component) {
       }, " Nascimento: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-5"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this3.nascimento = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.nascimento,
         type: "date",
         className: "form-control",
         id: "nascimento",
@@ -71963,7 +71705,7 @@ function (_Component) {
         id: "etnia",
         list: "cbEtnia",
         onChange: function onChange(e) {
-          return _this3.etnia = e.target.value;
+          return _this7.state.paciente.etnia = e.target.value;
         },
         placeholder: "Etnia"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
@@ -71980,16 +71722,16 @@ function (_Component) {
         className: "col-sm-2 col-form-label"
       }, " Naturalidade: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-10"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
         className: "form-control",
         id: "naturalidade",
+        onChange: this.handleChange,
+        value: this.state.paciente.naturalidade,
         defaultValue: "Te\xF3filo Otoni-MG",
-        list: "cbNaturalidade",
-        onChange: function onChange(e) {
-          return _this3.nascimento = e.target.value;
-        },
-        placeholder: "Naturalidade"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
+        list: "cbNaturalidade"
+      }, _defineProperty(_React$createElement, "onChange", function onChange(e) {
+        return _this7.state.paciente.naturalidade = e.target.value;
+      }), _defineProperty(_React$createElement, "placeholder", "Naturalidade"), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
         id: "cbNaturalidade"
       }, this.state.municipios.map(function (row) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -72004,9 +71746,8 @@ function (_Component) {
       }, " Profiss\xE3o: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-10"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this3.profissao = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.profissao,
         type: "text",
         className: "form-control text-uppercase",
         id: "profissao",
@@ -72025,15 +71766,16 @@ function (_Component) {
         className: "col-sm-3 col-form-label"
       }, " Tipo Logradouro: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-9"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _defineProperty({
         className: "form-control",
         id: "tipologradouro",
+        onChange: this.handleChange,
+        value: this.state.paciente.tipologradouro,
         list: "cbTipoLogradouro",
-        defaultValue: "Rua",
-        onChange: function onChange(e) {
-          return _this3.tipoLogradouro = e.target.value;
-        }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
+        defaultValue: "Rua"
+      }, "onChange", function onChange(e) {
+        return _this7.tipoLogradouro = e.target.value;
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
         id: "cbTipoLogradouro"
       }, this.state.tiposlogradouro.map(function (row) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -72048,9 +71790,8 @@ function (_Component) {
       }, " Logradouro: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-9"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this3.logradouro = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.logradouro,
         type: "text",
         className: "form-control",
         id: "logradouro",
@@ -72063,9 +71804,8 @@ function (_Component) {
       }, " N\xFAmero: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-5"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this3.numero = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.numero,
         type: "number",
         className: "form-control",
         id: "numero",
@@ -72078,9 +71818,8 @@ function (_Component) {
       }, " Complemento: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-9"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this3.complemento = e.target.value;
-        },
+        onChange: this.handleChange,
+        value: this.state.paciente.complemento,
         type: "text",
         className: "form-control",
         id: "complemento",
@@ -72098,7 +71837,7 @@ function (_Component) {
         defaultValue: "Te\xF3filo Otoni-MG",
         list: "cbMunicipio",
         onChange: function onChange(e) {
-          return _this3.municipio = e.target.value;
+          return _this7.state.paciente.municipio = e.target.value;
         },
         placeholder: "Munic\xEDpio"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
@@ -72121,7 +71860,7 @@ function (_Component) {
         id: "bairro",
         list: "cbBairro",
         onChange: function onChange(e) {
-          return _this3.bairro = e.target.value;
+          return _this7.state.paciente.bairro = e.target.value;
         },
         placeholder: "Bairro"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
@@ -72138,15 +71877,384 @@ function (_Component) {
         className: "btn btn-warning"
       }, " Cancelar "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick(e) {
-          return _this3.salvar(e);
+          return _this7.salvar(e);
         },
         className: "btn btn-primary",
         "data-dismiss": "modal"
-      }, " Confirmar ")))))));
+      }, " Confirmar "))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "border-4"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row text-right m-0"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-11 text-right m-0"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        align: "right",
+        className: "col-2 border border-dark rounded p-2 text-center m-0",
+        style: {
+          background: this.state.cor
+        }
+      }, "\xA0", this.state.classificacao))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-1 text-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary"
+      }, " Incluir "), "\xA0")));
     }
   }]);
 
-  return CaPaciente;
+  return Atendimento;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/atendimentos.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/atendimentos.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Atendimentos; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-js-pagination */ "./node_modules/react-js-pagination/dist/Pagination.js");
+/* harmony import */ var react_js_pagination__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_js_pagination__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _imagens_accept_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../imagens/accept.png */ "./resources/js/imagens/accept.png");
+/* harmony import */ var _imagens_accept_png__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_imagens_accept_png__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _validacao_validacao__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./validacao/validacao */ "./resources/js/components/validacao/validacao.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+var Atendimentos =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Atendimentos, _Component);
+
+  function Atendimentos() {
+    var _this;
+
+    _classCallCheck(this, Atendimentos);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Atendimentos).call(this));
+    _this.state = {
+      redirect: false,
+      atendimento: [],
+      atendimentos: [],
+      activePage: 0,
+      itemsCountPerPage: 0,
+      totalItemsCount: 0,
+      filtros: []
+    };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    var filtros = {
+      nome: _this.state.filtros.nome,
+      mae: _this.state.filtros.mae,
+      nascimento: _this.state.filtros.nascimento,
+      datainicial: _this.state.filtros.dataInicial,
+      datafinal: _this.state.filtros.dataFinal
+    };
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://systh/api/atendimentos', filtros).then(function (response) {
+      _this.setState({
+        atendimentos: response.data.data,
+        activePage: response.data.current_page,
+        itemsCountPerPage: response.data.per_page,
+        totalItemsCount: response.data.total
+      });
+    });
+    return _this;
+  }
+
+  _createClass(Atendimentos, [{
+    key: "buscar",
+    value: function buscar(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      var filtros = {
+        nome: this.state.filtros.nome,
+        mae: this.state.filtros.mae,
+        nascimento: this.state.filtros.nascimento,
+        datainicial: this.state.filtros.dataInicial,
+        datafinal: this.state.filtros.dataFinal
+      };
+      console.log(filtros);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://systh/api/atendimentos', filtros).then(function (response) {
+        _this2.setState({
+          atendimentos: response.data.data,
+          activePage: response.data.current_page,
+          itemsCountPerPage: response.data.per_page,
+          totalItemsCount: response.data.total
+        });
+      });
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(e) {
+      var filtros = this.state.filtros;
+      var newValue = e.target.value;
+      var campo = e.target.id;
+      var oldValue = filtros[campo];
+      newValue = newValue.toUpperCase();
+      var tipo;
+
+      if (campo == 'nascimento' || campo == "dataInicial" || campo == "dataFinal") {
+        tipo = 'date';
+      } else {
+        tipo = 'text';
+      }
+
+      filtros[campo] = Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_5__["default"])(tipo, newValue, oldValue);
+      this.setState({
+        filtros: filtros
+      });
+    }
+  }, {
+    key: "coverteData",
+    value: function coverteData(data, tipo) {
+      var dia = data.substring(8, 10);
+      var mes = data.substring(5, 7);
+      var ano = data.substring(0, 4);
+
+      if (tipo == 'data') {
+        return dia + "/" + mes + "/" + ano;
+      } else {
+        var hora = data.substring(11, 16);
+        return hora + " " + dia + "/" + mes + "/" + ano;
+      }
+    }
+  }, {
+    key: "handlePageChange",
+    value: function handlePageChange(pageNumber) {
+      var _this3 = this;
+
+      var filtros = {
+        dataInicial: this.dataInicial,
+        dataFinal: this.dataFinal,
+        nome: this.nome,
+        mae: this.mae,
+        nascimento: this.nascimento,
+        enfermeiro: this.enfermeiro
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://systh/api/atendimentos?page=" + pageNumber, filtros).then(function (response) {
+        _this3.setState({
+          atendimentos: response.data.data,
+          activePage: response.data.current_page,
+          itemsCountPerPage: response.data.per_page,
+          totalItemsCount: response.data.total
+        });
+      });
+    }
+  }, {
+    key: "selecionar",
+    value: function selecionar(e, id) {
+      e.preventDefault();
+      var atendimentos = this.state.atendimentos;
+      var atendimento = {};
+
+      for (var i = 0; i < atendimentos.length; i++) {
+        if (id == atendimentos[i].id) {
+          atendimento = this.state.atendimentos[i];
+          break;
+        }
+      }
+
+      this.setState({
+        redirect: true,
+        atendimento: atendimento
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      if (this.state.redirect) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Redirect"], {
+          to: {
+            pathname: "/atendimento",
+            state: {
+              atendimento: this.state.atendimento
+            }
+          }
+        });
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "container-fluid"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-6"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "nome",
+          className: "col-sm-2 col-form-label "
+        }, " Paciente: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-sm-10"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: this.handleChange,
+          value: this.state.filtros.nome,
+          type: "text",
+          className: "form-control text-uppercase",
+          id: "nome",
+          placeholder: "Nome do paciente"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "mae",
+          className: "col-sm-2 col-form-label"
+        }, " M\xE3e: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-sm-10"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: this.handleChange,
+          value: this.state.filtros.mae,
+          type: "text",
+          className: "form-control text-uppercase",
+          id: "mae",
+          placeholder: "Nome da m\xE3e"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "enfermeiro",
+          className: "col-sm-2 col-form-label"
+        }, " Enfermeiro: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-sm-10"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: this.handleChange,
+          value: this.state.filtros.enfermeiro,
+          type: "text",
+          className: "form-control text-uppercase",
+          id: "enfermeiro",
+          placeholder: "Enfermeiro"
+        })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-6"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "nascimento",
+          className: "col-sm-2 col-form-label"
+        }, " Nascimento: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-sm-5"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: this.handleChange,
+          value: this.state.filtros.nascimento,
+          type: "date",
+          className: "form-control",
+          id: "nascimento",
+          placeholder: "Nascimento"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group row align-text-middle"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "dataInicial",
+          className: "col-sm-2 col-form-label"
+        }, "Entre: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-sm-4"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: this.handleChange,
+          value: this.state.filtros.dataInicial,
+          type: "date",
+          className: "form-control",
+          id: "dataInicial"
+        })), "-", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-sm-4"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: this.handleChange,
+          value: this.state.filtros.dataFinal,
+          type: "date",
+          className: "form-control",
+          id: "dataFinal"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "btn btn-primary col-4",
+          onClick: function onClick(e) {
+            return _this4.buscar(e);
+          }
+        }, "Buscar"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+          className: "table table-striped"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+          scope: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+          scope: "col",
+          colSpan: "3"
+        }, " Paciente "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+          scope: "col",
+          colSpan: "3"
+        }, " M\xE3e "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+          scope: "col"
+        }, " Nascimento "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+          scope: "col"
+        }, " Cor "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+          scope: "col"
+        }, " Data e Hora "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+          scope: "col"
+        }, " "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.atendimentos.map(function (row) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+            key: row.id
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+            colSpan: "3"
+          }, " ", row.paciente, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+            colSpan: "3"
+          }, " ", row.mae, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", _this4.coverteData(row.nascimento, "data"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.cor), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", new Date(row.created_at).toLocaleString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            className: "btn btn-primary",
+            onClick: function onClick(e) {
+              return _this4.selecionar(e, row.id);
+            }
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+            src: _imagens_accept_png__WEBPACK_IMPORTED_MODULE_4___default.a
+          }))));
+        })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-3"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_2___default.a, {
+          activePage: this.state.activePage,
+          itemsCountPerPage: this.state.itemsCountPerPage,
+          totalItemsCount: this.state.totalItemsCount,
+          pageRangeDisplayed: 5,
+          onChange: function onChange(e) {
+            return _this4.handlePageChange(e);
+          },
+          itemClass: "page-item",
+          linkClass: "page-link"
+        }))))));
+      }
+    }
+  }]);
+
+  return Atendimentos;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
@@ -72225,6 +72333,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _imagens_gota_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../imagens/gota.svg */ "./resources/js/imagens/gota.svg");
+/* harmony import */ var _imagens_gota_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_imagens_gota_svg__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -72242,6 +72352,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -72271,9 +72382,11 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         className: "navbar navbar-expand-lg navbar-dark bg-dark"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        className: "navbar-brand",
+        className: "navbar-brand nav-link mr-5",
         to: "/home"
-      }, "SysTH"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: _imagens_gota_svg__WEBPACK_IMPORTED_MODULE_2___default.a
+      }), "Skalp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "navbar-toggler",
         type: "button",
         "data-toggle": "collapse",
@@ -72313,7 +72426,7 @@ function (_Component) {
         to: "/atendimentos"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "home"
-      }, "Atendimentos"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, "Relat\xF3rios"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "sr-only"
       }, "(current)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "nav-item active"
@@ -72595,27 +72708,27 @@ function (_Component) {
         className: "btn btn-secondary"
       }, "Alterar senha"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
-          background: 'red'
+          background: '#ff0000'
         },
         className: "p-1 pt-2 m-0 mr-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Vermelho - 0 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
-          background: 'orange'
+          background: '#ff8c00'
         },
         className: "p-1 pt-2 m-0 mr-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Laranja - 10 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
-          background: 'yellow'
+          background: '#ffff00'
         },
         className: "p-1 pt-2 m-0 mr-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Amarelo - 60 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
-          background: 'green'
+          background: '#008000'
         },
         className: "p-1 pt-2 m-0 mr-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Verde - 120 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
-          background: 'blue'
+          background: '#0000ff'
         },
         className: "p-1 pt-2 m-0 mr-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Azul - 240 min")));
@@ -72629,6 +72742,137 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/validacao/validacao.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/validacao/validacao.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function validar(type, newValue) {
+  var oldValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+  var key = "";
+
+  if (newValue.length == 1) {
+    key = newValue[0];
+  } else {
+    for (var i = 0; i < oldValue.length; i++) {
+      if (oldValue[i] != newValue[i]) {
+        key = newValue[i];
+        break;
+      }
+    }
+  }
+
+  if (key == "") {
+    key = newValue[newValue.length - 1];
+  }
+
+  if (newValue.length < oldValue.length) {
+    return newValue;
+  }
+
+  if (type == 'text') {
+    if (key == 'A' || key == 'B' || key == 'C' || key == 'D' || key == 'E' || key == 'F' || key == 'G' || key == 'H' || key == 'I' || key == 'J' || key == 'K' || key == 'L' || key == 'M' || key == 'N' || key == 'O' || key == 'P' || key == 'Q' || key == 'R' || key == 'S' || key == 'T' || key == 'U' || key == 'V' || key == 'W' || key == 'X' || key == 'Y' || key == 'Z') {
+      return newValue;
+    } else if (key == ' ') {
+      var repetido = false;
+
+      if (newValue[0] == ' ') {
+        repetido = true;
+      } else {
+        for (var i = 0; i < newValue.length - 1; i++) {
+          if (newValue[i] == ' ' && newValue[i + 1] == ' ') {
+            if (i != 0) {
+              repetido = true;
+              break;
+            }
+          }
+        }
+      }
+
+      if (!repetido) {
+        return newValue;
+      }
+    }
+  } else if (type == 'int') {
+    if (key == '0' || key == '1' || key == '2' || key == '3' || key == '4' || key == '5' || key == '6' || key == '7' || key == '8' || key == '9') {
+      return newValue;
+    }
+  } else if (type == 'float') {
+    if (key == '0' || key == '1' || key == '2' || key == '3' || key == '4' || key == '5' || key == '6' || key == '7' || key == '8' || key == '9') {
+      return newValue;
+    } else if (key == '.' || key == ',') {
+      var japossui = false;
+
+      for (var i = 0; i < oldValue.length; i++) {
+        if (oldValue[i] == ',' || oldValue[i] == '.') {
+          japossui = true;
+          break;
+        }
+      }
+
+      if (!japossui && newValue.length != 1) {
+        return newValue;
+      }
+    }
+  } else if (type == 'date') {
+    return newValue;
+  }
+
+  return oldValue;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (validar);
+
+/***/ }),
+
+/***/ "./resources/js/imagens/accept.png":
+/*!*****************************************!*\
+  !*** ./resources/js/imagens/accept.png ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/accept.png?8bfed48756f192ed7afe6eaa4799aae4";
+
+/***/ }),
+
+/***/ "./resources/js/imagens/brasao.png":
+/*!*****************************************!*\
+  !*** ./resources/js/imagens/brasao.png ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/brasao.png?aa177ce5fae65364123e118105cf9d47";
+
+/***/ }),
+
+/***/ "./resources/js/imagens/edit.png":
+/*!***************************************!*\
+  !*** ./resources/js/imagens/edit.png ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/edit.png?2161618f547a2c1239d32810bfa85f0b";
+
+/***/ }),
+
+/***/ "./resources/js/imagens/gota.svg":
+/*!***************************************!*\
+  !*** ./resources/js/imagens/gota.svg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/gota.svg?589997cfdf1501941998527b7dff8a8b";
+
+/***/ }),
+
 /***/ "./resources/js/imagens/info.png":
 /*!***************************************!*\
   !*** ./resources/js/imagens/info.png ***!
@@ -72637,6 +72881,28 @@ function (_Component) {
 /***/ (function(module, exports) {
 
 module.exports = "/images/info.png?146fce7860bcdb03f8ca183bf6caf047";
+
+/***/ }),
+
+/***/ "./resources/js/imagens/logomini.png":
+/*!*******************************************!*\
+  !*** ./resources/js/imagens/logomini.png ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/logomini.png?3fb7ad75919320a1967d5a870ab1d097";
+
+/***/ }),
+
+/***/ "./resources/js/imagens/upa.png":
+/*!**************************************!*\
+  !*** ./resources/js/imagens/upa.png ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/upa.png?fc35991e3b01399b9c1821915bf3cf4c";
 
 /***/ }),
 

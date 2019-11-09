@@ -23,19 +23,19 @@ export default class User extends Component{
                 </div>
                 <br/>
                 <hr/>
-                <div style={{background: 'red'}} className="p-1 pt-2 m-0 mr-2">
+                <div style={{background: '#ff0000'}} className="p-1 pt-2 m-0 mr-2">
                     <h4>Vermelho - 0 min</h4>
                 </div>
-                <div style={{background: 'orange'}} className="p-1 pt-2 m-0 mr-2">
+                <div style={{background: '#ff8c00'}} className="p-1 pt-2 m-0 mr-2">
                     <h4>Laranja - 10 min</h4>
                 </div>
-                <div style={{background: 'yellow'}} className="p-1 pt-2 m-0 mr-2">
+                <div style={{background: '#ffff00'}} className="p-1 pt-2 m-0 mr-2">
                     <h4>Amarelo - 60 min</h4>
                 </div>
-                <div style={{background: 'green'}} className="p-1 pt-2 m-0 mr-2">
+                <div style={{background: '#008000'}} className="p-1 pt-2 m-0 mr-2">
                     <h4>Verde - 120 min</h4>
                 </div>
-                <div style={{background: 'blue'}} className="p-1 pt-2 m-0 mr-2">
+                <div style={{background: '#0000ff'}} className="p-1 pt-2 m-0 mr-2">
                     <h4>Azul - 240 min</h4>
                 </div>
             </div>
