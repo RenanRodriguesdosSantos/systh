@@ -27,12 +27,20 @@ Route::get('tipologradouro','TipoLogradouroController@index');
 Route::get('etnia','EtniaController@index');
 Route::get('profissao','ProfissaoController@index');
 Route::post('paciente/store','PacienteController@store');
+Route::put('paciente/update/{id}','PacienteController@update');
 Route::post('paciente','PacienteController@show');
 Route::get('discriminador/{id}','Fluxograma_DiscriminadorController@show'); // Deve ser enviado o id do fluxograma
 Route::post('fluxograma/store','FluxogramaController@store');
 Route::post('discriminador/store','DiscriminadorController@store');
 Route::post('fluxograma/discriminador/store','Fluxograma_DiscriminadorController@store');
+Route::get('fluxograma/discriminador/{id}','Fluxograma_DiscriminadorController@edit');
+Route::get('atendimentos/hoje','AtendimentoController@index');
 Route::post('atendimentos','AtendimentoController@show');
+Route::get('paciente/{id}','PacienteController@edit');
+Route::put('atendimento/update/{id}','AtendimentoController@update');
+Route::post('register','Auth\RegisterController@salvar');
+Route::get('paciente/ultimo','Auth\PacienteController@ultimo');
+
 Route::post('atendimento/store','AtendimentoController@store');
 
 

@@ -22,14 +22,13 @@ class CreatePacienteTable extends Migration
             $table->integer('numero');
             $table->string('complemento',50);
             $table->string('profissao',45);
+            $table->string('bairro',45);
 
-            $table->unsignedBigInteger('bairro');
             $table->unsignedBigInteger('municipio');
             $table->unsignedBigInteger('tipoLogradouro');
             $table->unsignedBigInteger('naturalidade');
             $table->unsignedBigInteger('etnia');
             
-            $table->foreign('bairro')->references('id')->on('Bairro');
             $table->foreign('municipio')->references('id')->on('Municipio');
             $table->foreign('tipoLogradouro')->references('id')->on('TipoLogradouro');
             $table->foreign('naturalidade')->references('id')->on('Municipio');

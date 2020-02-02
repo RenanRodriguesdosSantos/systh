@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +16,8 @@
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
                     <div class="card-body row">
-                        <div class="col-1"><img src="images/usuarioEnfermagem.png"></div>
-                        <div class="col-11">
+                        <div class="col-md-1 text-center"><img class="fluid" src="images/usuarioEnfermagem.png"></div>
+                        <div class="col-md-11">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
 
@@ -61,7 +61,7 @@
                                     <div class="col-md-8 offset-md-4">
                                         @if (Route::has('password.request'))
                                             <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                {{ __('Forgot Your Password?') }}
+                                                {{ __('Esqueceu sua Senha?') }}
                                             </a>
                                         @endif
                                     </div>

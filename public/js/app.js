@@ -70426,6 +70426,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _validacao_validacao__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validacao/validacao */ "./resources/js/components/validacao/validacao.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -70436,13 +70437,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -70460,8 +70462,18 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Adminstrador).call(this));
     _this.state = {
       user: [],
-      fluxograma: [],
-      discriminador: []
+      fluxogramas: [],
+      discriminadores: [],
+      cor: "VERMELHO",
+      fluxograma: "",
+      discriminador: "",
+      fluxogramaD: "",
+      discriminadorF: "",
+      nome: "",
+      email: "",
+      coren: "",
+      senha: "",
+      confirmar: ""
     };
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://systh/user").then(function (response) {
       _this.setState({
@@ -70471,203 +70483,415 @@ function (_Component) {
 
     _this.preecher();
 
+    _this.handleSelect = _this.handleSelect.bind(_assertThisInitialized(_this));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Adminstrador, [{
+    key: "handleSelect",
+    value: function handleSelect(e) {
+      var campo = e.target.id;
+      var value = e.target.value;
+      value = value.toUpperCase();
+
+      if (campo == 'cor') {
+        this.setState({
+          cor: value
+        });
+      } else if (campo == "fluxogramaD") {
+        this.setState({
+          fluxogramaD: value
+        });
+      } else if (campo == "discriminadorF") {
+        this.setState({
+          discriminadorF: value
+        });
+      }
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(e) {
+      var campo = e.target.id;
+      var value = e.target.value;
+
+      if (campo == "fluxograma") {
+        this.setState({
+          fluxograma: Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_2__["default"])("text", value.toUpperCase(), this.state.fluxograma)
+        });
+      } else if (campo == "discriminador") {
+        this.setState({
+          discriminador: Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_2__["default"])("text", value.toUpperCase(), this.state.discriminador)
+        });
+      } else if (campo == "nome") {
+        this.setState({
+          nome: Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_2__["default"])("text", value.toUpperCase(), this.state.nome)
+        });
+      } else if (campo == "coren") {
+        this.setState({
+          coren: Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_2__["default"])("int", value, this.state.coren)
+        });
+      } else if (campo == "email") {
+        this.setState({
+          email: Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_2__["default"])("livre", value, this.state.email)
+        });
+      } else if (campo == "senha") {
+        this.setState({
+          senha: Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_2__["default"])("livre", value, this.state.senha)
+        });
+      } else if (campo == "confirmar") {
+        this.setState({
+          confirmar: Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_2__["default"])("livre", value, this.state.confirmar)
+        });
+      }
+    }
+  }, {
     key: "preecher",
     value: function preecher() {
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/fluxograma").then(function (response) {
         _this2.setState({
-          fluxograma: response.data
+          fluxogramas: response.data
         });
       });
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/discriminador").then(function (response) {
         _this2.setState({
-          discriminador: response.data
+          discriminadores: response.data
         });
       });
     }
   }, {
     key: "salvarFluxograma",
     value: function salvarFluxograma(e) {
+      var _this3 = this;
+
       e.preventDefault();
-      var fluxograma = {
-        nome: this.fluxograma
-      };
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/fluxograma/store", fluxograma);
+
+      if (!this.state.fluxograma) {
+        alert("Preencha o campo Fluxograma");
+      } else {
+        var fluxograma = {
+          nome: this.state.fluxograma
+        };
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/fluxograma/store", fluxograma).then(function (e) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/fluxograma").then(function (response) {
+            _this3.setState({
+              fluxogramas: response.data
+            });
+          });
+        });
+        this.setState({
+          fluxograma: ""
+        });
+      }
     }
   }, {
     key: "salvarDiscriminador",
     value: function salvarDiscriminador(e) {
+      var _this4 = this;
+
       e.preventDefault();
-      var discriminador = {
-        nome: this.discriminador
-      };
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/discriminador/store", discriminador);
+
+      if (!this.state.discriminador) {
+        alert("Preencha o campo Discriminador");
+      } else {
+        var discriminador = {
+          nome: this.state.discriminador
+        };
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/discriminador/store", discriminador).then(function (e) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/discriminador").then(function (response) {
+            _this4.setState({
+              discriminadores: response.data
+            });
+          });
+        });
+        this.setState({
+          discriminador: ""
+        });
+      }
     }
   }, {
     key: "salvarClassificacao",
     value: function salvarClassificacao(e) {
       e.preventDefault();
+      var fluxograma = this.state.fluxogramaD;
+      var discriminador = this.state.discriminadorF;
 
-      for (var i = 0; i < this.state.fluxograma.length; i++) {
-        if (this.fluxogramaD == this.state.fluxograma[i].nome) {
-          this.fluxogramaD = this.state.fluxograma[i].id;
+      for (var i = 0; i < this.state.fluxogramas.length; i++) {
+        if (fluxograma == this.state.fluxogramas[i].nome) {
+          fluxograma = this.state.fluxogramas[i].id;
           break;
         }
       }
 
-      for (var i = 0; i < this.state.discriminador.length; i++) {
-        if (this.discriminadorF == this.state.discriminador[i].nome) {
-          this.discriminadorF = this.state.discriminador[i].id;
+      for (var i = 0; i < this.state.discriminadores.length; i++) {
+        if (discriminador == this.state.discriminadores[i].nome) {
+          discriminador = this.state.discriminadores[i].id;
           break;
         }
       }
 
       var fluxogramaDiscriminador = {
-        fluxograma: this.fluxogramaD,
-        discriminador: this.discriminadorF,
-        cor: this.cor
+        fluxograma: fluxograma,
+        discriminador: discriminador,
+        cor: this.state.cor
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/fluxograma/discriminador/store", fluxogramaDiscriminador);
+
+      if (typeof fluxogramaDiscriminador.fluxograma === "number" && typeof fluxogramaDiscriminador.discriminador === "number") {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/fluxograma/discriminador/store", fluxogramaDiscriminador);
+        this.setState({
+          fluxogramaD: "",
+          discriminadorF: ""
+        });
+      } else {
+        alert("Selecione um Fluxograma e um Discriminador");
+      }
+    }
+  }, {
+    key: "registrarUsuario",
+    value: function registrarUsuario(e) {
+      e.preventDefault();
+      var enfermeiro = {
+        name: this.state.nome,
+        coren: this.state.coren,
+        email: this.state.email,
+        password: this.state.senha
+      };
+
+      if (enfermeiro.name == "" || enfermeiro.coren == "" || enfermeiro.email == "" || enfermeiro.password == "") {
+        alert("Preencha todos os campos");
+      } else {
+        if (enfermeiro.password == this.state.confirmar) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/register", enfermeiro);
+          this.setState({
+            nome: "",
+            coren: "",
+            email: "",
+            senha: "",
+            confirmar: ""
+          });
+        } else {
+          alert("Senhas diferentes!");
+        }
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this5 = this;
 
-      if (this.state.user.id === 1) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Adminstrador"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "container-fluid formulario"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group row"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-6 border-right border-dark"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group row"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "fluxograma",
-          className: "col-sm-2 col-form-label"
-        }, " Fluxograma: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-sm-10"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: function onChange(e) {
-            return _this3.fluxograma = e.target.value;
-          },
-          type: "text",
-          className: "form-control",
-          id: "fluxograma",
-          placeholder: "Fluxograma"
-        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group row"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-sm-12 text-right"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-primary",
-          onClick: function onClick(e) {
-            return _this3.salvarFluxograma(e);
-          }
-        }, "Salvar Fluxograma"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group row"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "discriminador",
-          className: "col-sm-2 col-form-label"
-        }, " Discriminador: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-sm-10"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: function onChange(e) {
-            return _this3.discriminador = e.target.value;
-          },
-          type: "text",
-          className: "form-control",
-          id: "discriminador",
-          placeholder: "Discriminador"
-        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group row"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-sm-12 text-right"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-primary",
-          onClick: function onClick(e) {
-            return _this3.salvarDiscriminador(e);
-          }
-        }, "Salvar Discriminador"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "border border-dark"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group row"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "fluxogramaD",
-          className: "col-sm-2 col-form-label"
-        }, " Fluxograma: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-sm-10"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "form-control",
-          id: "fluxogramaD",
-          list: "cbFluxograma",
-          onChange: function onChange(e) {
-            return _this3.fluxogramaD = e.target.value;
-          },
-          placeholder: "Fluxograma"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
-          id: "cbFluxograma"
-        }, this.state.fluxograma.map(function (row) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-            value: row.nome,
-            key: row.id
-          });
-        })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group row"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "discriminiadorF",
-          className: "col-sm-2 col-form-label"
-        }, " Discriminador: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-sm-10"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "form-control",
-          id: "discriminiadorF",
-          list: "cbDiscriminador",
-          onChange: function onChange(e) {
-            return _this3.discriminadorF = e.target.value;
-          },
-          placeholder: "Discriminador"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
-          id: "cbDiscriminador"
-        }, this.state.discriminador.map(function (row) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-            value: row.nome,
-            key: row.id
-          });
-        })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group row"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "cor",
-          className: "col-sm-2 col-form-label"
-        }, " Cor: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-sm-10"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: function onChange(e) {
-            return _this3.cor = e.target.value;
-          },
-          type: "text",
-          className: "form-control",
-          id: "cor",
-          placeholder: "Cor"
-        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group row"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-sm-12 text-right"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-primary",
-          onClick: function onClick(e) {
-            return _this3.salvarClassificacao(e);
-          }
-        }, "Salvar Classifica\xE7\xE3o")))))))));
-      } else {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "404 | Not Found"));
-      }
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Adminstrador"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container-fluid formulario"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-6 border border-dark"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "fluxograma",
+        className: "col-sm-2 col-form-label"
+      }, " Fluxograma: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-10"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleChange,
+        value: this.state.fluxograma,
+        type: "text",
+        className: "form-control text-uppercase",
+        id: "fluxograma",
+        placeholder: "Fluxograma"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-12 text-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary",
+        onClick: function onClick(e) {
+          return _this5.salvarFluxograma(e);
+        }
+      }, "Salvar Fluxograma"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "discriminador",
+        className: "col-sm-2 col-form-label"
+      }, " Discriminador: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-10"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleChange,
+        value: this.state.discriminador,
+        type: "text",
+        className: "form-control text-uppercase",
+        id: "discriminador",
+        placeholder: "Discriminador"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-12 text-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary",
+        onClick: function onClick(e) {
+          return _this5.salvarDiscriminador(e);
+        }
+      }, "Salvar Discriminador"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "border border-dark p-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "fluxogramaD",
+        className: "col-sm-2 col-form-label"
+      }, " Fluxograma: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-10"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control text-uppercase",
+        id: "fluxogramaD",
+        list: "cbFluxograma",
+        onChange: this.handleSelect,
+        value: this.state.fluxogramaD,
+        placeholder: "Fluxograma"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
+        id: "cbFluxograma"
+      }, this.state.fluxogramas.map(function (row) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: row.nome,
+          key: row.id
+        });
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "discriminadorF",
+        className: "col-sm-2 col-form-label"
+      }, " Discriminador: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-10"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control text-uppercase",
+        id: "discriminadorF",
+        list: "cbDiscriminador",
+        onChange: this.handleSelect,
+        value: this.state.discriminadorF,
+        placeholder: "Discriminador"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
+        id: "cbDiscriminador"
+      }, this.state.discriminadores.map(function (row) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: row.nome,
+          key: row.id
+        });
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "cor",
+        className: "col-sm-2 col-form-label"
+      }, " Cor: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-10"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "form-control custom-select my-1 mr-sm-2",
+        id: "cor",
+        placeholder: "Cor",
+        onChange: this.handleSelect,
+        value: this.state.cor
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "VERMELHO"
+      }, "VERMELHO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "LARANJA"
+      }, "LARANJA"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "AMARELO"
+      }, "AMARELO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "VERDE"
+      }, "VERDE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "AZUL"
+      }, "AZUL")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-12 text-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary",
+        onClick: function onClick(e) {
+          return _this5.salvarClassificacao(e);
+        }
+      }, "Salvar Classifica\xE7\xE3o")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-6 border border-dark"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "nome",
+        className: "col-md-2 col-form-label "
+      }, "Nome:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-10"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "nome",
+        type: "text",
+        className: "form-control text-uppercase",
+        onChange: this.handleChange,
+        value: this.state.nome,
+        placeholder: "Nome"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "coren",
+        className: "col-md-2 col-form-label "
+      }, "Coren:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-10"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "coren",
+        type: "text",
+        className: "form-control",
+        onChange: this.handleChange,
+        value: this.state.coren,
+        placeholder: "Coren"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "email",
+        className: "col-md-2 col-form-label "
+      }, "E-Mail:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-10"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "email",
+        type: "email",
+        className: "form-control",
+        name: "email",
+        onChange: this.handleChange,
+        value: this.state.email,
+        placeholder: "E-mail"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "senha",
+        className: "col-md-2 col-form-label "
+      }, "Senha"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-10"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "senha",
+        type: "password",
+        className: "form-control",
+        onChange: this.handleChange,
+        value: this.state.senha,
+        placeholder: "Senha"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "confirmar",
+        className: "col-md-2 col-form-label "
+      }, "Confirmar Senha"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-10"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "confirmar",
+        type: "password",
+        className: "form-control",
+        onChange: this.handleChange,
+        value: this.state.confirmar,
+        placeholder: "Confirmar Senha"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-12 text-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick(e) {
+          return _this5.registrarUsuario(e);
+        },
+        className: "btn btn-primary"
+      }, "Registrar"))))))));
     }
   }]);
 
@@ -70755,16 +70979,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _imagens_brasao_png__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_imagens_brasao_png__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _imagens_upa_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../imagens/upa.png */ "./resources/js/imagens/upa.png");
 /* harmony import */ var _imagens_upa_png__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_imagens_upa_png__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _imagens_logomini_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../imagens/logomini.png */ "./resources/js/imagens/logomini.png");
-/* harmony import */ var _imagens_logomini_png__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_imagens_logomini_png__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _validacao_validacao__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./validacao/validacao */ "./resources/js/components/validacao/validacao.js");
-/* harmony import */ var _imagens_edit_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../imagens/edit.png */ "./resources/js/imagens/edit.png");
-/* harmony import */ var _imagens_edit_png__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_imagens_edit_png__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _imagens_accept_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../imagens/accept.png */ "./resources/js/imagens/accept.png");
-/* harmony import */ var _imagens_accept_png__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_imagens_accept_png__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _validacao_validacao__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./validacao/validacao */ "./resources/js/components/validacao/validacao.js");
+/* harmony import */ var _imagens_edit_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../imagens/edit.png */ "./resources/js/imagens/edit.png");
+/* harmony import */ var _imagens_edit_png__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_imagens_edit_png__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _imagens_accept_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../imagens/accept.png */ "./resources/js/imagens/accept.png");
+/* harmony import */ var _imagens_accept_png__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_imagens_accept_png__WEBPACK_IMPORTED_MODULE_7__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -70781,7 +71001,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -70812,19 +71031,42 @@ function (_Component) {
       activePage: 0,
       itemsCountPerPage: 0,
       totalItemsCount: 0,
-      atendimento: _this.props.location.state ? _this.props.location.state.atendimento : [],
+      atendimento: _this.props.location.state ? _this.props.location.state.atendimento : {
+        registro: "",
+        saturacao: "",
+        glasgow: "",
+        tax: "",
+        fc: "",
+        pa: "",
+        hgt: "",
+        peso: "",
+        fluxograma: "",
+        discriminador: "",
+        descricao: "",
+        numeroFluxograma: ""
+      },
       cor: '',
       municipios: [],
-      bairros: [],
       etnias: [],
       tiposlogradouro: [],
-      paciente: {
-        municipio: "Teófilo Otoni-MG",
-        naturalidade: "Teófilo Otoni-MG",
-        tipoLogradouro: 'Rua'
+      paciente: _this.props.location.state ? _this.props.location.state.paciente : {
+        nome: "",
+        mae: "",
+        nascimento: "",
+        etnia: "",
+        municipio: "",
+        bairro: "",
+        naturalidade: "",
+        tipoLogradouro: "",
+        profissao: "",
+        numero: "",
+        logradouro: "",
+        complemento: ""
       }
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSelect = _this.handleSelect.bind(_assertThisInitialized(_this));
+    _this.api = "/api";
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://systh/user").then(function (response) {
       _this.setState({
         user: response.data
@@ -70833,41 +71075,108 @@ function (_Component) {
 
     _this.preencherFluxograma();
 
+    _this.editarAtendimento();
+
     return _this;
   }
 
   _createClass(Atendimento, [{
+    key: "editarAtendimento",
+    value: function editarAtendimento() {
+      var _this2 = this;
+
+      if (this.props.location.state) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(this.api + '/fluxograma/discriminador/' + this.props.location.state.atendimento.fluxograma_discriminador).then(function (response) {
+          var fluxograma_discriminador = response.data[0];
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(_this2.api + "/discriminador/" + fluxograma_discriminador.fluxograma).then(function (response) {
+            _this2.setState({
+              discriminador: response.data
+            });
+          });
+          $('#discriminador').prop('disabled', false);
+          $('#discriminador').val(fluxograma_discriminador.nomeDiscriminador);
+          var atendimento = _this2.state.atendimento;
+          atendimento.numeroFluxograma = fluxograma_discriminador.fluxograma;
+          atendimento.discriminador = fluxograma_discriminador.nomeDiscriminador;
+          atendimento.fluxograma = fluxograma_discriminador.nomeFluxograma;
+          atendimento.paciente = _this2.state.paciente.id;
+
+          _this2.setState({
+            atendimento: atendimento
+          });
+
+          $("#fluxograma").val(fluxograma_discriminador.nomeFluxograma);
+
+          if (fluxograma_discriminador.cor == "VERMELHO") {
+            _this2.setState({
+              cor: '#ff0000'
+            });
+          } else if (fluxograma_discriminador.cor == "LARANJA") {
+            _this2.setState({
+              cor: '#ff8c00'
+            });
+          } else if (fluxograma_discriminador.cor == "AMARELO") {
+            _this2.setState({
+              cor: '#ffff00'
+            });
+          } else if (fluxograma_discriminador.cor == "VERDE") {
+            _this2.setState({
+              cor: '#008000'
+            });
+          } else if (fluxograma_discriminador.cor == "AZUL") {
+            _this2.setState({
+              cor: '#0000ff'
+            });
+          }
+        });
+      }
+    }
+  }, {
     key: "handleChange",
     value: function handleChange(e) {
       var atendimento = this.state.atendimento;
       var newValue = e.target.value;
       var campo = e.target.id;
-      var oldValue = atendimento[campo];
       newValue = newValue.toUpperCase();
       var tipo;
 
       if (campo == "registro" || campo == 'numero') {
         tipo = 'int';
-      } else if (campo == 'saturacao' || campo == 'glasgow' || campo == 'tax' || campo == 'hgt' || campo == 'fc' || campo == 'pa' || campo == 'peso' || campo == 'temperatura') {
+      } else if (campo == 'saturacao' || campo == 'glasgow' || campo == 'tax' || campo == 'hgt' || campo == 'fc' || campo == 'peso' || campo == 'temperatura') {
         tipo = 'float';
       } else if (campo == 'nascimento') {
         tipo = 'date';
+      } else if (campo == "descricao") {
+        tipo = 'livre';
+      } else if (campo == 'pa') {
+        tipo = "pa";
       } else {
         tipo = 'text';
       }
 
       if (campo == 'nome' || campo == 'nascimento' || campo == 'mae' || campo == 'numero' || campo == 'profissao' || campo == 'complemento' || campo == 'logradouro') {
         var paciente = this.state.paciente;
-        paciente[campo] = Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_6__["default"])(tipo, newValue, oldValue);
+        var oldValue = paciente[campo];
+        paciente[campo] = Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_5__["default"])(tipo, newValue, oldValue);
         this.setState({
           paciente: paciente
         });
       } else {
-        atendimento[campo] = Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_6__["default"])(tipo, newValue, oldValue);
+        var oldValue = atendimento[campo];
+        atendimento[campo] = Object(_validacao_validacao__WEBPACK_IMPORTED_MODULE_5__["default"])(tipo, newValue, oldValue);
         this.setState({
           atendimento: atendimento
         });
       }
+    }
+  }, {
+    key: "handleSelect",
+    value: function handleSelect(e) {
+      var paciente = this.state.paciente;
+      paciente[e.target.id] = e.target.value;
+      this.setState({
+        paciente: paciente
+      });
     }
   }, {
     key: "setAtendimento",
@@ -70883,30 +71192,27 @@ function (_Component) {
   }, {
     key: "handlePageChange",
     value: function handlePageChange(pageNumber) {
-      var _this2 = this;
+      var _this3 = this;
 
       var pacientes = {
-        nome: this.nome,
-        mae: this.mae,
-        nascimento: this.nascimento
+        nome: this.state.paciente.nome,
+        mae: this.state.paciente.mae,
+        nascimento: this.state.paciente.nascimento
       };
+      $("#tabela").addClass("d-none");
+      $("#spinner").removeClass("d-none");
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://systh/api/paciente?page=" + pageNumber, pacientes).then(function (response) {
-        _this2.setState({
-          pacientes: response.data.data,
-          activePage: response.data.current_page,
-          itemsCountPerPage: response.data.per_page,
-          totalItemsCount: response.data.total
-        });
+        return _this3.closeLoading(response);
       });
     }
   }, {
     key: "preencherFluxograma",
     value: function preencherFluxograma() {
-      var _this3 = this;
+      var _this4 = this;
 
       // Busca no Banco os dados para preenchimento do ComboBox Fluxograma;
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://systh/api/fluxograma").then(function (response) {
-        _this3.setState({
+        _this4.setState({
           fluxograma: response.data
         });
       });
@@ -70915,22 +71221,40 @@ function (_Component) {
   }, {
     key: "fluxograma",
     value: function fluxograma(e) {
-      var _this4 = this;
+      var _this5 = this;
 
-      this.fluxograma = e.target.value;
+      $('#discriminador').prop('disabled', true);
+      $('#discriminador').val('');
+      this.setState({
+        classificacao: 'Cor',
+        cor: '#ffffff'
+      });
+      var fluxograma = e.target.value;
+      var atendimento = this.state.atendimento;
+      atendimento.fluxograma = fluxograma;
+      this.setState({
+        atendimento: atendimento
+      });
 
       for (var i = 0; i < this.state.fluxograma.length; i++) {
-        if (this.fluxograma == this.state.fluxograma[i].nome) {
-          this.fluxograma = this.state.fluxograma[i].id;
+        if (fluxograma == this.state.fluxograma[i].nome) {
+          fluxograma = this.state.fluxograma[i].id;
           break;
         }
       }
 
-      if (typeof this.fluxograma === "number") {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://systh/api/discriminador/" + this.fluxograma).then(function (response) {
-          _this4.setState({
+      if (typeof fluxograma === "number") {
+        var atendimento = this.state.atendimento;
+        atendimento.numeroFluxograma = fluxograma;
+        this.setState({
+          atendimento: atendimento
+        });
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/discriminador/" + fluxograma).then(function (response) {
+          _this5.setState({
             discriminador: response.data
           });
+
+          $('#discriminador').prop('disabled', false);
         });
       }
     } //obtem o código da classificação
@@ -70939,9 +71263,11 @@ function (_Component) {
     key: "discriminador",
     value: function discriminador(e) {
       for (var i = 0; i < this.state.discriminador.length; i++) {
+        var atendimento = this.state.atendimento;
+
         if (e.target.value == this.state.discriminador[i].nome) {
-          var atendimento = this.state.atendimento;
-          atendimento.classificacao = this.state.discriminador[i].id;
+          atendimento.fluxograma_discriminador = this.state.discriminador[i].id;
+          atendimento.discriminador = e.target.value;
           this.setState({
             atendimento: atendimento
           });
@@ -70949,36 +71275,41 @@ function (_Component) {
             classificacao: this.state.discriminador[i].cor
           });
 
-          if (this.state.discriminador[i].cor == "Vermelho") {
+          if (this.state.discriminador[i].cor == "VERMELHO") {
             this.setState({
               cor: '#ff0000'
             });
-          } else if (this.state.classificacao == "Laranja") {
+          } else if (this.state.discriminador[i].cor == "LARANJA") {
             this.setState({
               cor: '#ff8c00'
             });
-          } else if (this.state.classificacao == "Amarelo") {
+          } else if (this.state.discriminador[i].cor == "AMARELO") {
             this.setState({
               cor: '#ffff00'
             });
-          } else if (this.state.classificacao == "Verde") {
+          } else if (this.state.discriminador[i].cor == "VERDE") {
             this.setState({
               cor: '#008000'
             });
-          } else if (this.state.classificacao == "Azul") {
+          } else if (this.state.discriminador[i].cor == "AZUL") {
             this.setState({
               cor: '#0000ff'
             });
           }
 
           break;
+        } else {
+          atendimento.fluxograma_discriminador = "";
+          this.setState({
+            atendimento: atendimento
+          });
         }
       }
     }
   }, {
     key: "buscar",
     value: function buscar(e) {
-      var _this5 = this;
+      var _this6 = this;
 
       e.preventDefault();
 
@@ -70988,33 +71319,57 @@ function (_Component) {
           mae: this.state.paciente.mae,
           nascimento: this.state.paciente.nascimento
         };
+        $("#tabela").addClass("d-none");
+        $("#spinner").removeClass("d-none");
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://systh/api/paciente', pacientes).then(function (response) {
-          _this5.setState({
-            pacientes: response.data.data,
-            activePage: response.data.current_page,
-            itemsCountPerPage: response.data.per_page,
-            totalItemsCount: response.data.total
-          });
+          return _this6.closeLoading(response);
+        })["catch"](function (e) {
+          return _this6.redirectToHome(e);
         });
       }
     }
   }, {
+    key: "closeLoading",
+    value: function closeLoading(response) {
+      this.setState({
+        pacientes: response.data.data,
+        activePage: response.data.current_page,
+        itemsCountPerPage: response.data.per_page,
+        totalItemsCount: response.data.total
+      });
+      $("#tabela").removeClass("d-none");
+      $("#spinner").addClass('d-none');
+    }
+  }, {
     key: "selecionar",
-    value: function selecionar(row) {
+    value: function selecionar(e, row) {
+      e.preventDefault();
       var atendimento = this.state.atendimento;
       var paciente = this.state.paciente;
       atendimento.paciente = row.id;
       paciente.nome = row.nome;
       paciente.mae = row.mae;
       paciente.nascimento = row.nascimento;
+      paciente.profissao = row.profissao;
+      paciente.logradouro = row.logradouro;
+      paciente.complemento = row.complemento;
+      paciente.numero = row.numero;
+      paciente.etnia = row.etnia;
+      paciente.naturalidade = row.naturalidade;
+      paciente.tipoLogradouro = row.tipoLogradouro;
+      paciente.bairro = row.bairro;
+      paciente.municipio = row.municipio;
       this.setState({
         paciente: paciente,
         atendimento: atendimento
       });
+      this.fecharModal(e);
     }
   }, {
     key: "incluir",
     value: function incluir(e) {
+      var _this7 = this;
+
       e.preventDefault();
       var atendimento = {
         paciente: this.state.atendimento.paciente,
@@ -71028,45 +71383,76 @@ function (_Component) {
         fc: this.state.atendimento.fc,
         temperatura: this.state.atendimento.temperatura,
         peso: this.state.atendimento.peso,
-        discricao: this.state.atendimento.discricao,
-        fluxograma_discriminador: this.state.atendimento.classificacao
+        descricao: this.state.atendimento.descricao,
+        fluxograma_discriminador: this.state.atendimento.fluxograma_discriminador
       };
-      console.log(atendimento);
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/atendimento/store', atendimento);
+
+      if (!atendimento.paciente) {
+        alert("Selecione um Paciente.");
+      } else if (!atendimento.registro) {
+        alert("Informe o número de Registro do sistema Sonner.");
+      } else if (!atendimento.fluxograma_discriminador) {
+        alert("Selecione um Fluxograma e um Discriminador");
+      } else {
+        if (!this.state.atendimento.id) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/atendimento/store', atendimento).then(function (e) {
+            return _this7.imprimir();
+          }); //.catch((e) => this.redirectToHome(e));
+        } else {
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('/api/atendimento/update/' + this.state.atendimento.id, atendimento).then(function (e) {
+            return _this7.imprimir();
+          })["catch"](function (e) {
+            return _this7.redirectToHome(e);
+          });
+        }
+      }
+    }
+  }, {
+    key: "redirectToHome",
+    value: function redirectToHome(e) {
+      if (e.response || e.request) {
+        alert("OCORREU UM ERRO DE CONEXÃO \n Você será redirecionado à página HOME!\nStatus do Erro" + e.response.status);
+        window.location.replace("/home");
+      }
     }
   }, {
     key: "imprimir",
-    value: function imprimir(e) {
-      e.preventDefault(); //var table = "";
-
+    value: function imprimir() {
+      var paciente = this.state.paciente;
+      var atendimento = this.state.atendimento;
+      atendimento.saturacao = atendimento.saturacao ? atendimento.saturacao + " %" : "";
+      atendimento.fc = atendimento.fc ? atendimento.fc + " bpm" : "";
+      atendimento.hgt = atendimento.hgt ? atendimento.hgt + " mg/dL" : "";
+      atendimento.pa = atendimento.pa ? atendimento.pa + " mmHg" : "";
+      atendimento.tax = atendimento.tax ? atendimento.tax + " <sob>o</sob>C" : "";
+      atendimento.peso = atendimento.peso ? atendimento.peso + " kg" : "";
       var table = "<table><tr class='center'><td><img src='http://systh/images/brasao.png'></td><td colspan='3'><b>PREFEITURA MUNICIPAL DE TEÓFILO OTONI <br> SECRETARIA MUNICIPAL DE SAÚDE <br> Unidade de Pronto Atendimento</b></td><td><img src='images/upa.png'></td></tr>";
       table = table + "<tr class='center'><td colspan='5'><b>SECRETARIA DE ESTADO DE SAÚDE DE MINAS GERAIS</b></td></tr>";
       table = table + "<tr class='center'><td colspan='5'><b>ACOLHIMENTO COM CLASSIFICAÇÃO DE RISCO - SISTEMA DE MANCHESTER</b></td></tr>";
       table = table + "<tr><td colspan='5' bgcolor='C0C0C0'>&nbsp;</td></tr>";
       table = table + "<tr class='center'><td colspan='5' >IDENTIFICAÇÃO DO PACIENTE</td></tr>";
-      table = table + "<tr><td colspan='5'>Nome: " + this.nome + " </td></tr>";
-      table = table + "<tr><td colspan='2'>Idade: " + this.nascimento + "</td><td colspan='3'>Registro: " + this.registro + "</td></tr>";
-      table = table + "<tr><td colspan='5'>Mãe: " + this.mae + " </td></tr>";
-      table = table + "<tr><td colspan='2'>Etnia: " + "</td><td colspan='3'>Naturalidade: " + " </td></tr>";
-      table = table + "<tr><td colspan='2'>ID: " + "</td><td colspan='3'>Profissão/Ocupação: " + " </td></tr>";
-      table = table + "<tr><td colspan='5'>Logradouro: " + "" + " </td></tr>";
-      table = table + "<tr><td colspan='2'>Número: " + "</td><td colspan='3'>Complemento: " + " </td></tr>";
-      table = table + "<tr><td colspan='2'>Bairro: " + "</td><td colspan='3'>Cidade: " + " </td></tr>";
+      table = table + "<tr><td colspan='5'><b>Nome: </b>" + paciente.nome + " </td></tr>";
+      table = table + "<tr><td colspan='2'><b>Idade: </b>" + paciente.nascimento + "</td><td colspan='3'><b>Registro: </b>" + atendimento.registro + "</td></tr>";
+      table = table + "<tr><td colspan='5'><b>Mãe: </b>" + paciente.mae + " </td></tr>";
+      table = table + "<tr><td colspan='2'><b>Etnia: </b>" + paciente.etnia + "</td><td colspan='3'><b>Naturalidade: </b>" + paciente.naturalidade + " </td></tr>";
+      table = table + "<tr><td colspan='5'><b>Profissão: </b>" + paciente.profissao + " </td></tr>";
+      table = table + "<tr><td colspan='5'><b>Endereço: </b>" + paciente.tipoLogradouro + " " + paciente.logradouro + ", nº " + paciente.numero + ", " + paciente.complemento + "</td></tr>";
+      table = table + "<tr><td colspan='2'><b>Bairro: </b>" + paciente.bairro + "</td><td colspan='3'><b>Cidade: </b>" + paciente.municipio + " </td></tr>";
       table = table + "<tr><td colspan='5' bgcolor='C0C0C0'>&nbsp;</td></tr>";
       table = table + "<tr class='center'><td colspan='5' >CLASSIFICAÇÃO DE RISCO</td></tr>";
-      table = table + "<tr><td colspan='5'>Descrição: " + "" + " </td></tr>";
-      table = table + "<tr><td colspan='4'>Fluxograma: " + "</td><td>Número: " + " </td></tr>";
-      table = table + "<tr><td colspan='5'>Discriminador: " + "" + " </td></tr>";
+      table = table + "<tr><td colspan='5'><b>Descrição: </b>" + atendimento.descricao + "" + " </td></tr>";
+      table = table + "<tr><td colspan='4'><b>Fluxograma: </b>" + atendimento.fluxograma + "</td><td colspan='2'><b>Número: </b>" + atendimento.numeroFluxograma + " </td></tr>";
+      table = table + "<tr><td colspan='5'><b>Discriminador: </b>" + atendimento.discriminador + " </td></tr>";
       table = table + "<tr><td colspan='5' bgcolor='C0C0C0'>&nbsp;</td></tr>";
       table = table + "<tr class='center'><td colspan='5' > SINAIS VITAIS </td></tr>";
-      table = table + "<tr><td colspan='2'>Saturação: " + "</td><td colspan='3'>Glasgow: " + " </td></tr>";
-      table = table + "<tr><td colspan='2'>TAX: " + "</td><td colspan='3'>HGT: " + " </td></tr>";
-      table = table + "<tr><td colspan='2'>PA: " + "</td><td colspan='3'>FC: " + " </td></tr>";
-      table = table + "<tr><td colspan='2'>Temperatura: " + "</td><td colspan='3'>Peso: " + " </td></tr>";
+      table = table + "<tr><td colspan='2'><b>Saturação: </b>" + atendimento.saturacao + "</td><td colspan='3'><b>Glasgow: </b>" + atendimento.glasgow + " </td></tr>";
+      table = table + "<tr><td colspan='2'><b>TAX: </b>" + atendimento.tax + "</td><td colspan='3'><b>HGT: </b>" + atendimento.hgt + " </td></tr>";
+      table = table + "<tr><td colspan='2'><b>PA: </b>" + atendimento.pa + "</td><td colspan='3'><b>FC: </b>" + atendimento.fc + " </td></tr>";
+      table = table + "<tr><td colspan='5'><b>Peso: </b>" + atendimento.peso + "</td></tr>";
       table = table + "<tr><td colspan='5' bgcolor='C0C0C0'>&nbsp;</td></tr>";
       table = table + "<tr class='center'><td colspan='5' > ENFERMEIRO RESPONSÁVEL </td></tr>";
-      table = table + "<tr><td colspan='4'>Enfermeiro: " + "</td><td>Coren: " + " </td></tr>";
-      table = table + "<tr><td colspan='5'>Coordenador: " + "" + " </td></tr>";
+      table = table + "<tr><td colspan='4'><b>Enfermeiro: </b>" + this.state.user.name + "</td><td colspan='2'><b>Coren: </b>" + this.state.user.coren + " </td></tr>";
+      table = table + "<tr><td colspan='5'><b>Coordenador: </b>" + "Edson Mauriz" + " </td></tr>";
       table = table + "<tr><td colspan='5' class='center'><br><br>_____________________________________________<br> Teófilo Otoni<br> 21:41 <br> 25/10/2019</td></tr>";
       table = table + "</table>";
       var style = "<style> table{width: 100%; font: 17px Calibri;} table,tr,td {border: solid 2px #000000; border-collapse: collapse;} .center{text-align: center;}</style>";
@@ -71078,6 +71464,8 @@ function (_Component) {
       win.document.write(body);
       win.document.write("</html>");
       win.print(); //win.close();
+
+      this.cancelar();
     }
   }, {
     key: "coverteData",
@@ -71104,32 +71492,69 @@ function (_Component) {
     key: "cadastrar",
     value: function cadastrar(e) {
       e.preventDefault();
+      $('#headerModal').text('Cadastro de Paciente');
+      $('#bodyBuscar').addClass('d-none');
+      $('#bodyCadastrar').removeClass('d-none');
+      $('#btnCadastrar').addClass('d-none');
+      $('#btnSalvar').removeClass('d-none');
       this.listar();
+    }
+  }, {
+    key: "fecharModal",
+    value: function fecharModal(e) {
+      e.preventDefault();
+      this.setState({
+        pacientes: []
+      });
+      $('#bodyCadastrar').addClass('d-none');
+      $('#bodyBuscar').removeClass('d-none');
+      $('#btnCadastrar').removeClass('d-none');
+      $('#btnSalvar').addClass('d-none');
+      $('#headerModal').text('Selecionar Paciente');
+
+      if (e.target.id == "cancelar") {
+        var atendimento = this.state.atendimento;
+        atendimento.paciente = "";
+        this.setState({
+          atendimento: atendimento
+        });
+        this.setState({
+          paciente: {
+            nome: "",
+            mae: "",
+            nascimento: "",
+            municipio: "",
+            bairro: "",
+            naturalidade: "",
+            etnia: "",
+            tipoLogradouro: "",
+            profissao: "",
+            numero: "",
+            logradouro: "",
+            complemento: ""
+          }
+        });
+      }
     } //////// ====== MÉTODOS UTILIZADOS PARA CADASTRO DE PACIENTE ==========////////
 
   }, {
     key: "listar",
     value: function listar() {
-      var _this6 = this;
+      var _this8 = this;
 
       // Busca no Banco de dados os dados para ComboBox
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://systh/api/municipio").then(function (response) {
-        _this6.setState({
+        _this8.setState({
           municipios: response.data
         });
       });
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://systh/api/bairro').then(function (response) {
-        _this6.setState({
-          bairros: response.data
-        });
-      });
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://systh/api/etnia').then(function (response) {
-        _this6.setState({
+        _this8.setState({
           etnias: response.data
         });
       });
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://systh/api/tipologradouro').then(function (response) {
-        _this6.setState({
+        _this8.setState({
           tiposlogradouro: response.data
         });
       });
@@ -71137,42 +71562,7 @@ function (_Component) {
   }, {
     key: "salvar",
     value: function salvar(e) {
-      e.preventDefault(); //Para tranformar o nome em id para salvar no banco
-
-      for (var i = 0; i < this.state.bairros.length; i++) {
-        if (this.state.paciente.bairro == this.state.bairros[i].nome) {
-          this.state.paciente.bairro = this.state.bairros[i].id;
-          break;
-        }
-      } //Para tranformar o nome em id para salvar no banco
-
-
-      for (var i = 0; i < this.state.municipios.length; i++) {
-        if (this.state.paciente.municipio == this.state.municipios[i].nome + '-' + this.state.municipios[i].uf) {
-          this.state.paciente.municipio = this.state.municipios[i].id;
-        }
-
-        if (this.state.paciente.naturalidade == this.state.municipios[i].nome + '-' + this.state.municipios[i].uf) {
-          this.state.paciente.naturalidade = this.state.municipios[i].id;
-        }
-      } //Para tranformar o nome em id para salvar no banco
-
-
-      for (var i = 0; i < this.state.tiposlogradouro.length; i++) {
-        if (this.state.paciente.tipoLogradouro == this.state.tiposlogradouro[i].nome) {
-          this.state.paciente.tipoLogradouro = this.state.tiposlogradouro[i].id;
-          break;
-        }
-      } //Para tranformar o nome em id para salvar no banco
-
-
-      for (var i = 0; i < this.state.etnias.length; i++) {
-        if (this.state.paciente.etnia == this.state.etnias[i].nome) {
-          this.state.paciente.etnia = this.state.etnias[i].id;
-          break;
-        }
-      }
-
+      e.preventDefault();
       var paciente = {
         nome: this.state.paciente.nome,
         mae: this.state.paciente.mae,
@@ -71186,47 +71576,136 @@ function (_Component) {
         complemento: this.state.paciente.complemento,
         municipio: this.state.paciente.municipio,
         bairro: this.state.paciente.bairro
-      };
-      console.log(paciente);
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/paciente/store', paciente) // .then(response => {this.props.paciente.id = response.data})
-      .then(function (response) {
-        return console.log(response);
+      }; //Para tranformar o nome em id para salvar no banco
+
+      for (var i = 0; i < this.state.municipios.length; i++) {
+        if (this.state.paciente.municipio == this.state.municipios[i].nome + '-' + this.state.municipios[i].uf) {
+          paciente.municipio = this.state.municipios[i].id;
+        }
+
+        if (this.state.paciente.naturalidade == this.state.municipios[i].nome + '-' + this.state.municipios[i].uf) {
+          paciente.naturalidade = this.state.municipios[i].id;
+        }
+      } //Para tranformar o nome em id para salvar no banco
+
+
+      for (var i = 0; i < this.state.tiposlogradouro.length; i++) {
+        if (this.state.paciente.tipoLogradouro == this.state.tiposlogradouro[i].nome) {
+          paciente.tipoLogradouro = this.state.tiposlogradouro[i].id;
+          break;
+        }
+      } //Para tranformar o nome em id para salvar no banco
+
+
+      for (var i = 0; i < this.state.etnias.length; i++) {
+        if (this.state.paciente.etnia == this.state.etnias[i].nome) {
+          paciente.etnia = this.state.etnias[i].id;
+          break;
+        }
+      }
+
+      if (!this.state.paciente.id) {
+        var atendimento = this.state.atendimento;
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/paciente/store', paciente).then(function (response) {
+          return atendimento.paciente = response.data;
+        });
+        this.setState({
+          atendimento: atendimento
+        });
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('/api/paciente/update/' + this.state.paciente.id, paciente);
+      }
+
+      this.fecharModal(e);
+    }
+  }, {
+    key: "cancelar",
+    value: function cancelar() {
+      this.setState({
+        classificacao: 'Cor',
+        cor: '#ffffff'
       });
-      document.getElementById('form').reset();
+      this.setState({
+        atendimento: {
+          paciente: "",
+          registro: "",
+          saturacao: "",
+          glasgow: "",
+          tax: "",
+          fc: "",
+          pa: "",
+          hgt: "",
+          peso: "",
+          fluxograma: "",
+          discriminador: "",
+          descricao: ""
+        }
+      });
+      this.setState({
+        paciente: {
+          nome: "",
+          mae: "",
+          nascimento: "",
+          municipio: "",
+          bairro: "",
+          naturalidade: "",
+          etnia: "",
+          tipoLogradouro: "",
+          profissao: "",
+          numero: "",
+          logradouro: "",
+          complemento: ""
+        }
+      });
     } //////// ====== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==========////////
+    //////// ========== MÉTODOS USADOS PARA EDITAR UM PACIENTE  ===========////////
+
+  }, {
+    key: "editarPaciente",
+    value: function editarPaciente(row) {
+      var paciente = this.state.paciente;
+      paciente.id = row.id;
+      paciente.nome = row.nome;
+      paciente.mae = row.mae;
+      paciente.nascimento = row.nascimento;
+      paciente.profissao = row.profissao;
+      paciente.logradouro = row.logradouro;
+      paciente.complemento = row.complemento;
+      paciente.numero = row.numero;
+      paciente.etnia = row.etnia;
+      paciente.naturalidade = row.naturalidade;
+      paciente.tipoLogradouro = row.tipoLogradouro;
+      paciente.bairro = row.bairro;
+      paciente.municipio = row.municipio;
+      var atendimento = this.state.atendimento;
+      atendimento.paciente = paciente.id;
+      this.setState({
+        atendimento: atendimento
+      });
+      this.setState({
+        paciente: paciente
+      });
+      this.listar();
+      $('#headerModal').text('Cadastro de Paciente');
+      $('#bodyBuscar').addClass('d-none');
+      $('#bodyCadastrar').removeClass('d-none');
+      $('#btnCadastrar').addClass('d-none');
+      $('#btnSalvar').removeClass('d-none');
+    } //////// ========== ======= ============ ======== ========  ===========////////
 
   }, {
     key: "render",
     value: function render() {
-      var _this7 = this,
-          _React$createElement;
+      var _this9 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container-fluid"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-6"
-      }, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-6 text-center"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary",
-        onClick: function onClick(e) {
-          return _this7.incluir(e);
-        }
-      }, "Incluir"), "\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary",
-        onClick: function onClick(e) {
-          return _this7.imprimir(e);
-        }
-      }, "Imprimir"), "\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary"
-      }, "Cancelar"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "formulario"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-6 border-right border-dark"
+        className: "col-md-6 border border-dark"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "identificacao"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Identifica\xE7\xE3o do Paciente")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71240,7 +71719,7 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.atendimento.registro,
         type: "text",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "registro",
         placeholder: "Registro Sonner"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71282,19 +71761,19 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.paciente.nascimento,
         type: "date",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "nascimento",
         placeholder: "Nascimento"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-5"
+        className: "col-sm-5 text-center mt-sm-0 mt-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick(e) {
-          return _this7.buscar(e);
+          return _this9.buscar(e);
         },
-        className: "btn btn-primary",
         "data-toggle": "modal",
-        "data-target": "#exampleModalCenter"
-      }, " Buscar "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Descri\xE7\xE3o")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "data-target": "#paciente",
+        className: "btn btn-primary col-12"
+      }, " BUSCAR "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Descri\xE7\xE3o")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "descricao",
@@ -71304,12 +71783,11 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         onChange: this.handleChange,
         value: this.state.atendimento.descricao,
-        defaultValue: "",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "descricao",
         placeholder: "Queixa/Situa\xE7\xE3o"
       }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-6 border-left border-dark"
+        className: "col-md-6 border border-dark"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Sinais Vitais")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -71321,7 +71799,7 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.atendimento.saturacao,
         type: "text",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "saturacao",
         placeholder: "Oxig\xEAnio"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -71333,7 +71811,7 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.atendimento.glasgow,
         type: "text",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "glasgow",
         placeholder: "Glasgow"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71347,7 +71825,7 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.atendimento.tax,
         type: "text",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "tax",
         placeholder: "Tax"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -71359,7 +71837,7 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.atendimento.hgt,
         type: "text",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "hgt",
         placeholder: "HGT"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71373,7 +71851,7 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.atendimento.pa,
         type: "text",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "pa",
         placeholder: "Press\xE3o Arterial"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -71385,24 +71863,12 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.atendimento.fc,
         type: "text",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "fc",
         placeholder: "FC"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "temperatura",
-        className: "col-sm-2 col-form-label"
-      }, " Temperatura: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-4"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.handleChange,
-        value: this.state.atendimento.temperatura,
-        type: "text",
-        className: "form-control",
-        id: "temperatura",
-        placeholder: "Temperatura"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "peso",
         className: "col-sm-2 col-form-label"
       }, " Peso: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71411,7 +71877,7 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.atendimento.peso,
         type: "text",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "peso",
         placeholder: "Peso"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Classifica\xE7\xE3o de Risco")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71422,12 +71888,14 @@ function (_Component) {
       }, " Fluxograma: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-10"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "form-control",
+        className: "form-control text-uppercase",
+        type: "text",
         id: "fluxograma",
         list: "cbFluxograma",
         onChange: function onChange(e) {
-          return _this7.fluxograma(e);
+          return _this9.fluxograma(e);
         },
+        value: this.state.atendimento.fluxograma,
         placeholder: "Fluxograma"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
         id: "cbFluxograma"
@@ -71444,12 +71912,15 @@ function (_Component) {
       }, " Discriminador: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-10"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "form-control",
+        className: "form-control text-uppercase",
+        disabled: true,
+        type: "text",
         id: "discriminador",
         list: "cbDiscriminador",
         onChange: function onChange(e) {
-          return _this7.discriminador(e);
+          return _this9.discriminador(e);
         },
+        value: this.state.atendimento.discriminador,
         placeholder: "Discriminador"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
         id: "cbDiscriminador"
@@ -71459,28 +71930,38 @@ function (_Component) {
           key: row.id
         });
       }))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal fade",
-        id: "exampleModalCenter",
-        "data-backdrop": "static",
+        id: "paciente",
         tabIndex: "-1",
+        "data-backdrop": "static",
         role: "dialog",
-        "aria-labelledby": "exampleModalCenterTitle",
+        "aria-labelledby": "headerModal",
         "aria-hidden": "true"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl",
+        className: "modal-dialog modal-xl",
         role: "document"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "modal-title",
-        id: "exampleModalCenterTitle"
-      }, "Selecionar Paciente")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "headerModal"
+      }, "Selecionar Paciente"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "close",
+        onClick: function onClick(e) {
+          return _this9.fecharModal(e);
+        },
+        "data-dismiss": "modal",
+        "aria-label": "Fechar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        "aria-hidden": "true"
+      }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "bodyBuscar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "nome",
@@ -71524,18 +72005,18 @@ function (_Component) {
         className: "col-sm-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick(e) {
-          return _this7.buscar(e);
+          return _this9.buscar(e);
         },
-        className: "btn btn-primary col-sm-12"
-      }, " Buscar "))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        className: "close",
-        "data-dismiss": "modal",
-        "aria-label": "Close"
+        className: "btn btn-primary col-sm-12 mt-1 m-md-0"
+      }, " Buscar "))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "spinner-border d-none",
+        id: "spinner",
+        role: "status"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        "aria-hidden": "true"
-      }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-body table-responsive"
+        className: "sr-only"
+      }, "Loading..."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "table-responsive",
+        id: "tabela"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
         className: "table table-striped",
         style: {
@@ -71552,105 +72033,43 @@ function (_Component) {
       }, " Nascimento "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.pacientes.map(function (row) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
           key: row.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.nome, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.mae, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", _this7.coverteData(row.nascimento), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-warning"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.nome, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.mae, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", _this9.coverteData(row.nascimento), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "btn btn-warning",
+          onClick: function onClick(e) {
+            return _this9.editarPaciente(row);
+          }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: _imagens_edit_png__WEBPACK_IMPORTED_MODULE_7___default.a
+          src: _imagens_edit_png__WEBPACK_IMPORTED_MODULE_6___default.a
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "btn btn-primary",
           "data-dismiss": "modal",
           onClick: function onClick(e) {
-            return _this7.selecionar(row);
+            return _this9.selecionar(e, row);
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: _imagens_accept_png__WEBPACK_IMPORTED_MODULE_8___default.a
+          src: _imagens_accept_png__WEBPACK_IMPORTED_MODULE_7___default.a
         }))));
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-footer"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-flex justify-content-center col-12"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_js_pagination__WEBPACK_IMPORTED_MODULE_2___default.a, {
         activePage: this.state.activePage,
         itemsCountPerPage: this.state.itemsCountPerPage,
         totalItemsCount: this.state.totalItemsCount,
         pageRangeDisplayed: 5,
         onChange: function onChange(e) {
-          return _this7.handlePageChange(e);
+          return _this9.handlePageChange(e);
         },
         itemClass: "page-item",
         linkClass: "page-link"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        className: "btn btn-secondary",
-        "data-dismiss": "modal"
-      }, "Cancelar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        onClick: function onClick(e) {
-          return _this7.cadastrar(e);
-        },
-        "data-dismiss": "modal",
-        className: "btn btn-primary",
-        "data-toggle": "modal",
-        "data-target": ".bd-example-modal-lg"
-      }, "Cadastrar")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal fade bd-example-modal-lg",
-        "data-backdrop": "static",
-        id: "modal2",
-        tabIndex: "-1",
-        role: "dialog",
-        "aria-labelledby": "myLargeModalLabel",
-        "aria-hidden": "true"
+      })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-none",
+        id: "bodyCadastrar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        id: "formPaciente",
+        className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-dialog modal-lg"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-content"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "modal-title",
-        id: "exampleModalCenterTitle"
-      }, "Cadastro de Pacientes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        className: "close",
-        "data-dismiss": "modal",
-        "aria-label": "Close"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        "aria-hidden": "true"
-      }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-body"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "nav nav-tabs",
-        id: "nav-tab",
-        role: "tablist"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "nav-item nav-link active",
-        id: "nav-home-tab",
-        "data-toggle": "tab",
-        href: "#nav-home",
-        role: "tab",
-        "aria-controls": "nav-home",
-        "aria-selected": "true"
-      }, "Dados Pessoais"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "nav-item nav-link",
-        id: "nav-profile-tab",
-        "data-toggle": "tab",
-        href: "#nav-profile",
-        role: "tab",
-        "aria-controls": "nav-profile",
-        "aria-selected": "false"
-      }, "Endere\xE7o"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        id: "form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tab-content",
-        id: "nav-tabContent"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tab-pane fade show active",
-        id: "nav-home",
-        role: "tabpanel",
-        "aria-labelledby": "nav-home-tab"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-6 border border-dark"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Dados Pessoais")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "nome",
@@ -71690,7 +72109,7 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.paciente.nascimento,
         type: "date",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "nascimento",
         placeholder: "Nascimento"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71701,12 +72120,12 @@ function (_Component) {
       }, " Etnia: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-10"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "form-control",
+        className: "form-control text-uppercase",
+        type: "text",
         id: "etnia",
         list: "cbEtnia",
-        onChange: function onChange(e) {
-          return _this7.state.paciente.etnia = e.target.value;
-        },
+        onChange: this.handleSelect,
+        value: this.state.paciente.etnia,
         placeholder: "Etnia"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
         id: "cbEtnia"
@@ -71722,16 +72141,15 @@ function (_Component) {
         className: "col-sm-2 col-form-label"
       }, " Naturalidade: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-10"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
-        className: "form-control",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control text-uppercase",
+        type: "text",
         id: "naturalidade",
-        onChange: this.handleChange,
+        list: "cbNaturalidade",
+        onChange: this.handleSelect,
         value: this.state.paciente.naturalidade,
-        defaultValue: "Te\xF3filo Otoni-MG",
-        list: "cbNaturalidade"
-      }, _defineProperty(_React$createElement, "onChange", function onChange(e) {
-        return _this7.state.paciente.naturalidade = e.target.value;
-      }), _defineProperty(_React$createElement, "placeholder", "Naturalidade"), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
+        placeholder: "Naturalidade"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
         id: "cbNaturalidade"
       }, this.state.municipios.map(function (row) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -71752,30 +72170,24 @@ function (_Component) {
         className: "form-control text-uppercase",
         id: "profissao",
         placeholder: "Profiss\xE3o/Ocupa\xE7\xE3o"
-      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tab-pane fade",
-        id: "nav-profile",
-        role: "tabpanel",
-        "aria-labelledby": "nav-profile-tab"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-6 border border-dark"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Endere\xE7o")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "tipologradouro",
         className: "col-sm-3 col-form-label"
       }, " Tipo Logradouro: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-9"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _defineProperty({
-        className: "form-control",
-        id: "tipologradouro",
-        onChange: this.handleChange,
-        value: this.state.paciente.tipologradouro,
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control text-uppercase",
+        type: "text",
+        id: "tipoLogradouro",
         list: "cbTipoLogradouro",
-        defaultValue: "Rua"
-      }, "onChange", function onChange(e) {
-        return _this7.tipoLogradouro = e.target.value;
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
+        onChange: this.handleSelect,
+        value: this.state.paciente.tipoLogradouro,
+        placeholder: "Ex: Rua, Avenida"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
         id: "cbTipoLogradouro"
       }, this.state.tiposlogradouro.map(function (row) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -71793,7 +72205,7 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.paciente.logradouro,
         type: "text",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "logradouro",
         placeholder: "Logradouro"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71806,10 +72218,10 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         onChange: this.handleChange,
         value: this.state.paciente.numero,
-        type: "number",
-        className: "form-control",
+        type: "text",
+        className: "form-control text-uppercase",
         id: "numero",
-        placeholder: "N\xFAmero da resid\xEAncia"
+        placeholder: "N\xFAmero da Resid\xEAncia"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -71821,7 +72233,7 @@ function (_Component) {
         onChange: this.handleChange,
         value: this.state.paciente.complemento,
         type: "text",
-        className: "form-control",
+        className: "form-control text-uppercase",
         id: "complemento",
         placeholder: "Complemento"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71832,13 +72244,12 @@ function (_Component) {
       }, " Munic\xEDpio: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-9"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "form-control",
+        className: "form-control text-uppercase",
+        type: "text",
         id: "municipio",
-        defaultValue: "Te\xF3filo Otoni-MG",
         list: "cbMunicipio",
-        onChange: function onChange(e) {
-          return _this7.state.paciente.municipio = e.target.value;
-        },
+        onChange: this.handleSelect,
+        value: this.state.paciente.municipio,
         placeholder: "Munic\xEDpio"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
         ref: "cb",
@@ -71856,48 +72267,72 @@ function (_Component) {
       }, " Bairro: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-9"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "form-control",
+        className: "form-control text-uppercase",
+        type: "text",
         id: "bairro",
         list: "cbBairro",
-        onChange: function onChange(e) {
-          return _this7.state.paciente.bairro = e.target.value;
-        },
+        onChange: this.handleSelect,
+        value: this.state.paciente.bairro,
         placeholder: "Bairro"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("datalist", {
         id: "cbBairro"
-      }, this.state.bairros.map(function (row) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          key: row.id,
-          value: row.nome
-        });
-      }))))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "BELA VISTA"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "CENTRO"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "SAO CRISTOVAO"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "SAO JACINTO"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "VIRIATO"
+      })))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        "data-dismiss": "modal",
-        className: "btn btn-warning"
-      }, " Cancelar "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-secondary",
+        id: "cancelar",
         onClick: function onClick(e) {
-          return _this7.salvar(e);
+          return _this9.fecharModal(e);
         },
-        className: "btn btn-primary",
         "data-dismiss": "modal"
-      }, " Confirmar "))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-        className: "border-4"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row text-right m-0"
+      }, "Cancelar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "btnCadastrar",
+        type: "button",
+        className: "btn btn-primary",
+        onClick: function onClick(e) {
+          return _this9.cadastrar(e);
+        }
+      }, "Cadastrar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "btnSalvar",
+        type: "button",
+        className: "btn btn-primary d-none",
+        onClick: function onClick(e) {
+          return _this9.salvar(e);
+        },
+        "data-dismiss": "modal"
+      }, "Salvar")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row text-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-11 text-right m-0"
+        className: "col-md-3"
+      }, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-6"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         align: "right",
-        className: "col-2 border border-dark rounded p-2 text-center m-0",
+        className: "col-md-8 border border-dark rounded p-2 text-center m-0 h5 text-uppercase",
         style: {
           background: this.state.cor
         }
       }, "\xA0", this.state.classificacao))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-1 text-right"
+        className: "col-md-3 text-md-right text-center mt-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary"
-      }, " Incluir "), "\xA0")));
+        className: "btn btn-primary",
+        onClick: function onClick(e) {
+          return _this9.incluir(e);
+        }
+      }, " Salvar "), "\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-warning"
+      }, "Cancelar"), "\xA0")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null));
     }
   }]);
 
@@ -71971,23 +72406,20 @@ function (_Component) {
       activePage: 0,
       itemsCountPerPage: 0,
       totalItemsCount: 0,
-      filtros: []
+      filtros: [],
+      paciente: []
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
-    var filtros = {
-      nome: _this.state.filtros.nome,
-      mae: _this.state.filtros.mae,
-      nascimento: _this.state.filtros.nascimento,
-      datainicial: _this.state.filtros.dataInicial,
-      datafinal: _this.state.filtros.dataFinal
-    };
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://systh/api/atendimentos', filtros).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://systh/api/atendimentos', {}).then(function (response) {
       _this.setState({
         atendimentos: response.data.data,
         activePage: response.data.current_page,
         itemsCountPerPage: response.data.per_page,
         totalItemsCount: response.data.total
       });
+
+      $("#tabela").removeClass("d-none");
+      $("#spinner").addClass("d-none");
     });
     return _this;
   }
@@ -71998,14 +72430,16 @@ function (_Component) {
       var _this2 = this;
 
       e.preventDefault();
+      $("#spinner").removeClass("d-none");
+      $("#tabela").addClass("d-none");
       var filtros = {
         nome: this.state.filtros.nome,
         mae: this.state.filtros.mae,
         nascimento: this.state.filtros.nascimento,
         datainicial: this.state.filtros.dataInicial,
-        datafinal: this.state.filtros.dataFinal
+        datafinal: this.state.filtros.dataFinal,
+        enfermeiro: this.state.filtros.enfermeiro
       };
-      console.log(filtros);
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://systh/api/atendimentos', filtros).then(function (response) {
         _this2.setState({
           atendimentos: response.data.data,
@@ -72013,6 +72447,9 @@ function (_Component) {
           itemsCountPerPage: response.data.per_page,
           totalItemsCount: response.data.total
         });
+
+        $("#spinner").addClass("d-none");
+        $("#tabela").removeClass("d-none");
       });
     }
   }, {
@@ -72037,8 +72474,8 @@ function (_Component) {
       });
     }
   }, {
-    key: "coverteData",
-    value: function coverteData(data, tipo) {
+    key: "converteData",
+    value: function converteData(data, tipo) {
       var dia = data.substring(8, 10);
       var mes = data.substring(5, 7);
       var ano = data.substring(0, 4);
@@ -72055,6 +72492,8 @@ function (_Component) {
     value: function handlePageChange(pageNumber) {
       var _this3 = this;
 
+      $("#spinner").removeClass("d-none");
+      $("#tabela").addClass("d-none");
       var filtros = {
         dataInicial: this.dataInicial,
         dataFinal: this.dataFinal,
@@ -72070,11 +72509,16 @@ function (_Component) {
           itemsCountPerPage: response.data.per_page,
           totalItemsCount: response.data.total
         });
+
+        $("#spinner").addClass("d-none");
+        $("#tabela").removeClass("d-none");
       });
     }
   }, {
     key: "selecionar",
     value: function selecionar(e, id) {
+      var _this4 = this;
+
       e.preventDefault();
       var atendimentos = this.state.atendimentos;
       var atendimento = {};
@@ -72086,22 +72530,60 @@ function (_Component) {
         }
       }
 
-      this.setState({
-        redirect: true,
-        atendimento: atendimento
+      atendimento.saturacao = atendimento.saturacao ? atendimento.saturacao : "";
+      atendimento.glasgow = atendimento.glasgow ? atendimento.glasgow : "";
+      atendimento.tax = atendimento.tax ? atendimento.tax : "";
+      atendimento.hgt = atendimento.hgt ? atendimento.hgt : "";
+      atendimento.fc = atendimento.fc ? atendimento.fc : "";
+      atendimento.peso = atendimento.peso ? atendimento.peso : "";
+      atendimento.pa = atendimento.pa ? atendimento.pa : "";
+      atendimento.descricao = atendimento.descricao ? atendimento.descricao : "";
+      atendimento.fluxograma = "";
+      atendimento.discriminador = "";
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/paciente/' + atendimento.idPaciente).then(function (response) {
+        return _this4.setState({
+          redirect: true,
+          paciente: response.data[0],
+          atendimento: atendimento
+        });
       });
+    }
+  }, {
+    key: "imprimir",
+    value: function imprimir(e) {
+      e.preventDefault();
+      var atendimentos = this.state.atendimentos;
+      var table = "<table><tr class='center'><td><img src='http://systh/images/brasao.png'></td><td colspan='3'><b>PREFEITURA MUNICIPAL DE TEÓFILO OTONI <br> SECRETARIA MUNICIPAL DE SAÚDE <br> Unidade de Pronto Atendimento</b></td><td><img src='images/upa.png'></td></tr>";
+      table = table + "<tr class='center'><td colspan='5'><b>SECRETARIA DE ESTADO DE SAÚDE DE MINAS GERAIS</b></td></tr>";
+      table = table + "<tr class='center'><td colspan='5'><b>ACOLHIMENTO COM CLASSIFICAÇÃO DE RISCO - SISTEMA DE MANCHESTER</b></td></tr>";
+      table = table + "<tr><td colspan='5' bgcolor='C0C0C0'>&nbsp;</td></tr>";
+      table = table + "<tr><td><center><b>Registro</b></center></td><td colspan='2'><center><b>Paciente</b></center></td><td><center><b>Cor</b></center></td><td><center><b>Enfermeiro</b></center></td></tr>";
+      atendimentos.map(function (e) {
+        table = table + "<tr><td><center>" + e.registro + "</center></td><td colspan='2'>" + e.paciente + "</td><td>" + e.cor + "</td><td>" + e.enfermeiro + "</td><tr>";
+      });
+      table = table + "</table";
+      var style = "<style> table{width: 100%; font: 17px Calibri;} table,tr,td {border: solid 2px #000000; border-collapse: collapse;} .center{text-align: center;}</style>";
+      var head = "<head><title>Atendimento </title> " + style + " </head>";
+      var body = "<body>" + table + "<body>";
+      var win = window.open("", "", "height=700,width=700");
+      win.document.write("<html>");
+      win.document.write(head);
+      win.document.write(body);
+      win.document.write("</html>");
+      win.print();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.state.redirect) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Redirect"], {
           to: {
             pathname: "/atendimento",
             state: {
-              atendimento: this.state.atendimento
+              atendimento: this.state.atendimento,
+              paciente: this.state.paciente
             }
           }
         });
@@ -72111,7 +72593,7 @@ function (_Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group row"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-6"
+          className: "col-md-6"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group row"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -72155,7 +72637,7 @@ function (_Component) {
           id: "enfermeiro",
           placeholder: "Enfermeiro"
         })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-6"
+          className: "col-md-6"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group row"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -72194,14 +72676,30 @@ function (_Component) {
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group row"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12"
+          className: "col-6"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-primary col-4",
+          className: "btn btn-primary col-8",
           onClick: function onClick(e) {
-            return _this4.buscar(e);
+            return _this5.buscar(e);
           }
-        }, "Buscar"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-12"
+        }, "Buscar")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-6"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "btn btn-primary col-8",
+          onClick: function onClick(e) {
+            return _this5.imprimir(e);
+          }
+        }, "Imprimir"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "spinner-border ",
+          id: "spinner",
+          role: "status"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "sr-only"
+        }, "Loading..."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-md-12 d-none",
+          id: "tabela"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "table-responsive"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
           className: "table table-striped"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
@@ -72220,6 +72718,8 @@ function (_Component) {
           scope: "col"
         }, " Data e Hora "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
           scope: "col"
+        }, " Enfermeiro "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+          scope: "col"
         }, " "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.atendimentos.map(function (row) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
             key: row.id
@@ -72227,10 +72727,10 @@ function (_Component) {
             colSpan: "3"
           }, " ", row.paciente, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
             colSpan: "3"
-          }, " ", row.mae, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", _this4.coverteData(row.nascimento, "data"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.cor), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", new Date(row.created_at).toLocaleString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          }, " ", row.mae, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", _this5.converteData(row.nascimento, "data"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.cor), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", new Date(row.created_at).toLocaleString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", row.enfermeiro), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "btn btn-primary",
             onClick: function onClick(e) {
-              return _this4.selecionar(e, row.id);
+              return _this5.selecionar(e, row.id);
             }
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
             src: _imagens_accept_png__WEBPACK_IMPORTED_MODULE_4___default.a
@@ -72245,7 +72745,7 @@ function (_Component) {
           totalItemsCount: this.state.totalItemsCount,
           pageRangeDisplayed: 5,
           onChange: function onChange(e) {
-            return _this4.handlePageChange(e);
+            return _this5.handlePageChange(e);
           },
           itemClass: "page-item",
           linkClass: "page-link"
@@ -72308,8 +72808,8 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-12 text-center"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "\xA9 SysTH | Developed by Renan Rodrigues"));
+        className: "col-12 bg-dark text-light text-center p-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "\xA9Copyright Skalp - 2020 Todos os Direitos reservados | Developed by Renan Rodrigues"));
     }
   }]);
 
@@ -72333,8 +72833,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _imagens_gota_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../imagens/gota.svg */ "./resources/js/imagens/gota.svg");
-/* harmony import */ var _imagens_gota_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_imagens_gota_svg__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _imagens_logo_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../imagens/logo.png */ "./resources/js/imagens/logo.png");
+/* harmony import */ var _imagens_logo_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_imagens_logo_png__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -72385,7 +72885,7 @@ function (_Component) {
         className: "navbar-brand nav-link mr-5",
         to: "/home"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: _imagens_gota_svg__WEBPACK_IMPORTED_MODULE_2___default.a
+        src: _imagens_logo_png__WEBPACK_IMPORTED_MODULE_2___default.a
       }), "Skalp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "navbar-toggler",
         type: "button",
@@ -72507,9 +73007,8 @@ function (_Component) {
   _createClass(Home, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "w-100 h-100"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "img-fluid",
         src: _imagens_info_png__WEBPACK_IMPORTED_MODULE_1___default.a
       }));
     }
@@ -72593,13 +73092,11 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header__WEBPACK_IMPORTED_MODULE_7__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container-fluid"
+        className: "container-fluid text-uppercase"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-2 border border-dark pr-0"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user__WEBPACK_IMPORTED_MODULE_9__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-10 border border-dark pl-0 pt-2 pb-2"
+        className: "col-md-12 border border-dark pt-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/home",
@@ -72620,9 +73117,7 @@ function (_Component) {
         exact: true,
         path: "/administrador",
         component: _administrador__WEBPACK_IMPORTED_MODULE_11__["default"]
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row border-top border-dark"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_10__["default"], null))));
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer__WEBPACK_IMPORTED_MODULE_10__["default"], null));
     }
   }]);
 
@@ -72703,35 +73198,115 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "text-center align-middle"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "img-fluid",
         src: _imagens_usuarioEnfermagem_png__WEBPACK_IMPORTED_MODULE_2___default.a
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, this.state.user.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-secondary"
-      }, "Alterar senha"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, this.state.user.name), this.state.user.coren), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-secondary",
+        "data-toggle": "modal",
+        "data-target": "#ModalLongoExemplo"
+      }, "Alterar senha"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           background: '#ff0000'
         },
-        className: "p-1 pt-2 m-0 mr-2"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Vermelho - 0 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-1 pt-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Vermelho - 0 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           background: '#ff8c00'
         },
-        className: "p-1 pt-2 m-0 mr-2"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Laranja - 10 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-1 pt-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Laranja - 10 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           background: '#ffff00'
         },
-        className: "p-1 pt-2 m-0 mr-2"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Amarelo - 60 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-1 pt-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Amarelo - 60 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           background: '#008000'
         },
-        className: "p-1 pt-2 m-0 mr-2"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Verde - 120 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-1 pt-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Verde - 120 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           background: '#0000ff'
         },
-        className: "p-1 pt-2 m-0 mr-2"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Azul - 240 min")));
+        className: "p-1 pt-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Azul - 240 min")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal fade",
+        id: "ModalLongoExemplo",
+        "data-backdrop": "static",
+        tabIndex: "-1",
+        role: "dialog",
+        "aria-labelledby": "TituloModalLongoExemplo",
+        "aria-hidden": "true"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-dialog",
+        role: "document"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "modal-title",
+        id: "TituloModalLongoExemplo"
+      }, "Alterar Senha"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "close",
+        "data-dismiss": "modal",
+        "aria-label": "Fechar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        "aria-hidden": "true"
+      }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-body row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "col-md-12 text-left"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "senhaAtual",
+        className: "col-sm-4 col-form-label"
+      }, " Senha Atual: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-8"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleChange,
+        type: "password",
+        className: "form-control",
+        id: "senhaAtual",
+        placeholder: "Senha Atual"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "novaSenha",
+        className: "col-sm-4 col-form-label"
+      }, " Nova Senha: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-8"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleChange,
+        type: "password",
+        className: "form-control",
+        id: "novaSenha",
+        placeholder: "Nova Senha"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "confirmarSenha",
+        className: "col-sm-4 col-form-label"
+      }, " Confirmar Senha: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-sm-8"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleChange,
+        type: "password",
+        className: "form-control",
+        id: "confirmarSenha",
+        placeholder: "Confirmar Senha"
+      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-secondary",
+        "data-dismiss": "modal"
+      }, "Fechar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-primary"
+      }, "Salvar"))))));
     }
   }]);
 
@@ -72752,7 +73327,7 @@ function (_Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 function validar(type, newValue) {
-  var oldValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+  var oldValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
   var key = "";
 
   if (newValue.length == 1) {
@@ -72818,7 +73393,21 @@ function validar(type, newValue) {
         return newValue;
       }
     }
-  } else if (type == 'date') {
+  } else if (type == "pa") {
+    if ((key == '0' || key == '1' || key == '2' || key == '3' || key == '4' || key == '5' || key == '6' || key == '7' || key == '8' || key == '9') && newValue.length <= 7) {
+      if (newValue.length == 3) {
+        return newValue + "X";
+      } else if (newValue.length == 4) {
+        if (newValue[newValue.length - 1] != "X") {
+          return newValue.substring(0, 3) + "X" + newValue.substring(3, 4);
+        }
+      }
+
+      if (newValue.length < oldValue.length) {}
+
+      return newValue;
+    }
+  } else if (type == 'date' || type == 'livre') {
     return newValue;
   }
 
@@ -72862,17 +73451,6 @@ module.exports = "/images/edit.png?2161618f547a2c1239d32810bfa85f0b";
 
 /***/ }),
 
-/***/ "./resources/js/imagens/gota.svg":
-/*!***************************************!*\
-  !*** ./resources/js/imagens/gota.svg ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/gota.svg?589997cfdf1501941998527b7dff8a8b";
-
-/***/ }),
-
 /***/ "./resources/js/imagens/info.png":
 /*!***************************************!*\
   !*** ./resources/js/imagens/info.png ***!
@@ -72884,14 +73462,14 @@ module.exports = "/images/info.png?146fce7860bcdb03f8ca183bf6caf047";
 
 /***/ }),
 
-/***/ "./resources/js/imagens/logomini.png":
-/*!*******************************************!*\
-  !*** ./resources/js/imagens/logomini.png ***!
-  \*******************************************/
+/***/ "./resources/js/imagens/logo.png":
+/*!***************************************!*\
+  !*** ./resources/js/imagens/logo.png ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/logomini.png?3fb7ad75919320a1967d5a870ab1d097";
+module.exports = "/images/logo.png?42791b70e20a1fbce00bc39dfe483332";
 
 /***/ }),
 
@@ -72913,7 +73491,7 @@ module.exports = "/images/upa.png?fc35991e3b01399b9c1821915bf3cf4c";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/usuarioEnfermagem.png?a272a30bfbb38282503db7626758c7f1";
+module.exports = "/images/usuarioEnfermagem.png?0cb0fc0898eb53067ac02609af17284b";
 
 /***/ }),
 

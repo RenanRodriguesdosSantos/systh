@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -70,7 +71,12 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'coren' => $data['coren'],
             'password' => Hash::make($data['password']),
-            'api_token' => Str::random(60)
+            'api_token' => Str::random(80)
         ]);
+    }
+
+    public function salvar(Request $request){
+        $data = array('name' => $request->name, 'email' => $request->email, 'coren' => $request->coren, 'password' => $request->password);
+        $this->create($data);
     }
 }

@@ -25,4 +25,8 @@ class Fluxograma_DiscriminadorController extends Controller
         $fluxograma_discriminador->save();
 
     }
+
+    public function edit($id){
+        return Fluxograma_Discriminador::join('Discriminador','Fluxograma_Discriminador.discriminador','=','Discriminador.id')->join('Fluxograma','Fluxograma_Discriminador.fluxograma','=','Fluxograma.id')->where('Fluxograma_Discriminador.id','=',$id)->select("Fluxograma_Discriminador.*","Discriminador.nome as nomeDiscriminador","Fluxograma.nome as nomeFluxograma")->get();
+    }
 }

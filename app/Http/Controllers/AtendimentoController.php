@@ -14,7 +14,15 @@ class AtendimentoController extends Controller
      */
     public function index()
     {
-        return Atendimento::paginate(10);
+        return Atendimento::join("Paciente","Atendimento.paciente","=","Paciente.id")
+                        ->join("users","Atendimento.enfermeiro","=","users.id")
+                        ->join("Fluxograma_Discriminador","Atendimento.fluxograma_discriminador","=","Fluxograma_Discriminador.id")
+                        ->join("Fluxograma","Fluxograma_Discriminador.fluxograma","=","Fluxograma.id")
+                        ->join("Discriminador","Fluxograma_Discriminador.discriminador","=","Discriminador.id")
+                        ->select("Atendimento.*","users.name as enfermeiro","Paciente.id as idPaciente","Paciente.nome as paciente","Paciente.mae","Paciente.nascimento","Fluxograma_Discriminador.cor")
+                        ->orderBy("created_at","desc")
+                        ->whereDate('Atendimento.created_at',date("y/m/d"))
+                        ->paginate(20);
     }
 
     /**
@@ -46,7 +54,6 @@ class AtendimentoController extends Controller
         $atendimento->hgt = $request->hgt;
         $atendimento->pa = $request->pa;
         $atendimento->fc = $request->fc;
-        $atendimento->temperatura = $request->temperatura;
         $atendimento->peso = $request->peso;
         $atendimento->descricao = $request->descricao;
         $atendimento->save();
@@ -60,7 +67,7 @@ class AtendimentoController extends Controller
                         ->join("Fluxograma_Discriminador","Atendimento.fluxograma_discriminador","=","Fluxograma_Discriminador.id")
                         ->join("Fluxograma","Fluxograma_Discriminador.fluxograma","=","Fluxograma.id")
                         ->join("Discriminador","Fluxograma_Discriminador.discriminador","=","Discriminador.id")
-                        ->select("Atendimento.*","users.name as enfermeiro","Paciente.nome as paciente","Paciente.mae","Paciente.nascimento","Fluxograma_Discriminador.cor")
+                        ->select("Atendimento.*","users.name as enfermeiro","Paciente.id as idPaciente","Paciente.nome as paciente","Paciente.mae","Paciente.nascimento","Fluxograma_Discriminador.cor")
                         ->orderBy("created_at","desc")
                         ->where("users.name","LIKE",$request->enfermeiro.'%')
                         ->where('Paciente.nome','LIKE',$request->nome.'%')
@@ -76,9 +83,6 @@ class AtendimentoController extends Controller
                                     $query->whereDate('Atendimento.created_at',$request->datainicial);
                                 }
                             }
-                            else{
-                                $query->whereDate('Atendimento.created_at',date("y/m/d"));
-                            }
                         })
                         ->paginate(20);
     }
@@ -91,7 +95,7 @@ class AtendimentoController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -103,7 +107,20 @@ class AtendimentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $atendimento = Atendimento::find($id);
+        $atendimento->paciente = $request->paciente;
+        $atendimento->enfermeiro = $request->enfermeiro;
+        $atendimento->fluxograma_discriminador = $request->fluxograma_discriminador;
+        $atendimento->registro = $request->registro;
+        $atendimento->saturacao = $request->saturacao;
+        $atendimento->glasgow = $request->glasgow;
+        $atendimento->tax = $request->tax;
+        $atendimento->hgt = $request->hgt;
+        $atendimento->pa = $request->pa;
+        $atendimento->fc = $request->fc;
+        $atendimento->peso = $request->peso;
+        $atendimento->descricao = $request->descricao;
+        $atendimento->save();
     }
 
     /**

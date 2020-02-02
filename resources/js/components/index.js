@@ -16,12 +16,9 @@ export default class App extends Component {
         return (
             <Router>
                 <Header/>
-                <div className="container-fluid"> 
+                <div className="container-fluid text-uppercase"> 
                     <div className="row">
-                        <div className="col-2 border border-dark pr-0">
-                            <User/>
-                        </div>
-                        <div className="col-10 border border-dark pl-0 pt-2 pb-2">
+                        <div className="col-md-12 border border-dark pt-2">
                             <Route exact path="/home" component={Home}/>
                             <Route exact path="/atendimento" component={Atendimento}/>
                             <Route exact path="/atendimentos" component={Atendimentos}/>
@@ -29,10 +26,8 @@ export default class App extends Component {
                             <Route exact path="/administrador" component={Adminstrador}/>
                         </div>
                     </div>
-                    <div className="row border-top border-dark">
-                        <Footer/>
-                    </div>
                 </div>
+                <Footer/>
             </Router>
         );
     }

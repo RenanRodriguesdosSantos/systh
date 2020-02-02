@@ -13,6 +13,7 @@
 
 
 Auth::routes();
+//Auth::routes(["register" => false]);
 
 //Route::get('/{path}', 'HomeController@index')->name('home')->where('path','.*');
 Route::get('/home','HomeController@index')->name('home');
@@ -23,6 +24,14 @@ Route::get('/administrador','HomeController@index')->name('home');
 Route::get('/sair',function(){
     Auth::logout();
     return redirect('/login');
+});
+Route::get("/administrador",function(){
+    if(Auth::id() == 1){
+        return view('home');
+    }
+    else{
+        return abort(404);
+    }
 });
 Route::get("/user",function(){   
     return Auth::user();

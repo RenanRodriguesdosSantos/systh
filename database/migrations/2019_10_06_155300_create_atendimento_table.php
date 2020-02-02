@@ -16,17 +16,16 @@ class CreateAtendimentoTable extends Migration
         Schema::create('Atendimento', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->integer('registro');
+            $table->integer('registro')->unique();
             
             $table->float('saturacao',8,2)->nullable();
             $table->float('glasgow',8,2)->nullable();
             $table->float('tax',8,2)->nullable();
             $table->float('hgt',8,2)->nullable();
-            $table->float('pa',8,2)->nullable();
             $table->float('fc',8,2)->nullable();
-            $table->float('temperatura',8,2)->nullable();
             $table->float('peso',8,2)->nullable();
-
+            $table->string('pa',7)->nullable();
+            
             $table->string('descricao')->nullable();
 
             $table->unsignedBigInteger('paciente');

@@ -1,4 +1,4 @@
-function validar(type, newValue, oldValue = ""){
+function validar(type, newValue, oldValue = 0){
     var key = "";
     if(newValue.length == 1){
         key = newValue[0];
@@ -110,9 +110,37 @@ function validar(type, newValue, oldValue = ""){
             }
         }
     }
-    else if (type == 'date'){
+    else if(type == "pa"){
+        if(    (key == '0'
+            || key == '1'
+            || key == '2'
+            || key == '3'
+            || key == '4'
+            || key == '5'
+            || key == '6'
+            || key == '7'
+            || key == '8'
+            || key == '9')
+            && (newValue.length <= 7)
+        ){
+            if(newValue.length == 3){
+                return newValue + "X";
+            }
+            else if(newValue.length == 4){
+                if(newValue[newValue.length - 1] != "X"){
+                    return newValue.substring(0,3) + "X" + newValue.substring(3,4);
+                }
+            }
+            if(newValue.length < oldValue.length){
+
+            }
+            return newValue;
+        }
+    }
+    else if (type == 'date' || type == 'livre'){
         return newValue;
     }
+
     return oldValue;
 }
 
